@@ -19,7 +19,7 @@ export const Layout: FC = () => {
       {pathBook && <BookBreadcrumbs />}
       <Wrapper>
         <MainContainer>
-          {!pathBook && <NavigationMenu />}
+          {!pathBook && <NavigationMenu isBurgerMenu={false} />}
           <Outlet />
         </MainContainer>
       </Wrapper>

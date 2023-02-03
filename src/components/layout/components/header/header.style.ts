@@ -25,14 +25,7 @@ export const MenuContainer = styled.div`
   display: none;
   justify-content: space-between;
   align-items: center;
-  svg {
-    height: ${(props) => `${props.theme.size.default * 2}px`};
-    width: ${(props) => `${props.theme.size.default * 2}px`};
-    @media ${devices.mobile} {
-      height: 24px;
-      width: 24px;
-    }
-  }
+  position: relative;
   @media ${devices.tablet} {
     display: flex;
   }

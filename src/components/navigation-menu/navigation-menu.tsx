@@ -1,15 +1,22 @@
-import { FC, useCallback, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { NAVIGATION_MENU_LIST } from 'consts';
 import { RouteNames } from 'types/enum';
 import { NavMenuType } from 'types/types';
 
 import { NavListItem } from './components/nav-list-item';
-import { Container } from './navigation-menu.style';
+import { BurgerMenuContainer, Container } from './navigation-menu.style';
 
-export const NavigationMenu: FC = () => {
+type NavMenuProps = {
+  isBurgerMenu: boolean;
+  isShowMenu?: boolean;
+  setIsOpen?: (value: boolean) => void;
+};
+
+export const NavigationMenu: FC<NavMenuProps> = ({ isBurgerMenu, isShowMenu = true, setIsOpen }) => {
   const [navMenuList, setNavMenuList] = useState<NavMenuType[]>([]);
   const [activeRoute, setActiveRoute] = useState<RouteNames>(RouteNames.books);
   const [isBooksListOpen, setIsBooksListOpen] = useState<boolean>(true);
+  const navRef = useRef(null);
 
   useEffect(() => {
     setNavMenuList(NAVIGATION_MENU_LIST);
@@ -40,9 +47,11 @@ export const NavigationMenu: FC = () => {
     [activeRoute, isBooksListOpen, navMenuList, onPressRoute]
   );
 
+  const StyledComponent = useMemo(() => (isBurgerMenu ? BurgerMenuContainer : Container), [isBurgerMenu]);
+
   return (
-    <Container>
+    <StyledComponent isShowMenu={isShowMenu} onFocus={() => setIsOpen && setIsOpen(false)}>
       <ul>{renderMenu()}</ul>
-    </Container>
+    </StyledComponent>
   );
 };

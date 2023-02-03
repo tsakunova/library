@@ -1,10 +1,11 @@
 import { book } from 'assets/images';
+import { BookCategory } from 'types/enum';
 import { FullBookDTO } from 'types/types';
 
 export const mockBooks: FullBookDTO[] = [
   {
     id: 0,
-    category: 'history',
+    category: BookCategory.art,
     title: 'Грокаем алгоритмы. Иллюстрированное пособие для программистов и любопытствующих',
     imageLink: book,
     author: 'Адитья Бхаргава, 2019',
@@ -15,7 +16,7 @@ export const mockBooks: FullBookDTO[] = [
   },
   {
     id: 1,
-    category: 'history',
+    category: BookCategory.business,
     title: 'Программирование на JAVA',
     imageLink: book,
     author: 'Адитья Бхаргава, 2019',
@@ -26,7 +27,7 @@ export const mockBooks: FullBookDTO[] = [
   },
   {
     id: 2,
-    category: 'history',
+    category: BookCategory.computer,
     title: 'Грокаем алгоритмы.',
     imageLink: book,
     author: 'Адитья Бхаргава, 2019',
@@ -38,7 +39,7 @@ export const mockBooks: FullBookDTO[] = [
   },
   {
     id: 3,
-    category: 'history',
+    category: BookCategory.humor,
     title: 'Грокаем алгоритмы. Иллюстрированное пособие для программистов и любопытствующих',
     imageLink: book,
     author: 'Адитья Бхаргава, 2019',
@@ -49,7 +50,7 @@ export const mockBooks: FullBookDTO[] = [
   },
   {
     id: 4,
-    category: 'history',
+    category: BookCategory.history,
     title: 'Грокаем алгоритмы. Иллюстрированное пособие для программистов и любопытствующих',
     imageLink: book,
     author: 'Адитья Бхаргава, Патрик Нимейер, 2019',
@@ -60,7 +61,7 @@ export const mockBooks: FullBookDTO[] = [
   },
   {
     id: 5,
-    category: 'history',
+    category: BookCategory.business,
     title: 'Грокаем алгоритмы. Иллюстрированное ',
     imageLink: undefined,
     author: 'Адитья Бхаргава, , Патрик Нимейер, 2019',
@@ -72,7 +73,7 @@ export const mockBooks: FullBookDTO[] = [
   },
   {
     id: 6,
-    category: 'history',
+    category: BookCategory.business,
     title: 'Грокаем алгоритмы.',
     imageLink: book,
     author: 'Адитья Бхаргава, Патрик Нимейер, 2019',
@@ -83,7 +84,7 @@ export const mockBooks: FullBookDTO[] = [
   },
   {
     id: 7,
-    category: 'history',
+    category: BookCategory.business,
     title: 'Грокаем алгоритмы. Иллюстрированное пособие для программистов и любопытствующих',
     imageLink: book,
     author: 'Адитья Бхаргава, Патрик Нимейер, 2019',
@@ -94,7 +95,7 @@ export const mockBooks: FullBookDTO[] = [
   },
   {
     id: 8,
-    category: 'history',
+    category: BookCategory.classic,
     title: 'Грокаем алгоритмы. Иллюстрированное пособие для программистов и любопытствующих',
     imageLink: book,
     author: 'Адитья Бхаргава, 2019',
