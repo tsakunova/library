@@ -1,17 +1,23 @@
-import { FC, useRef, useState } from 'react';
+import React, { FC, useRef, useState } from 'react';
 import { CloseSVG, SearchSVG } from 'assets/icons';
+import { CircleButton } from 'components/buttons/circle-button';
 import { devices } from 'consts';
 import styled from 'styled-components';
-import { TitleVariant } from 'types/enum';
+import { TitleVariant, ViewVariant } from 'types/enum';
 
-const SearchInputContainer = styled.div`
+const SearchInputContainer = styled.div<{ isOpen: boolean }>`
   width: 350px;
-  padding: ${(props) => props.theme.size.button.paddingS};
+  padding: 10px 16px;
   position: relative;
   border-radius: ${(props) => props.theme.size.button.borderRadius};
   box-shadow: ${(props) => props.theme.color.shadow.card};
   @media ${devices.tablet} {
     width: 274px;
+  }
+  @media ${devices.mobile} {
+    display: ${(props) => (props.isOpen ? 'block' : 'none')};
+    padding: 7px 16px;
+    width: 284px;
   }
   & input {
     width: 100%;
@@ -21,6 +27,9 @@ const SearchInputContainer = styled.div`
     letter-spacing: 0, 1px;
     border: none;
     padding-left: 25px;
+    @media ${devices.mobile} {
+      padding-left: 0;
+    }
     &:focus {
       & ~ .searchIcon {
         path {
@@ -38,6 +47,9 @@ const SearchInputContainer = styled.div`
     path {
       fill: ${(props) => props.theme.color.grey.black40};
     }
+    @media ${devices.mobile} {
+      display: none;
+    }
   }
   & .searchCancelIcon {
     position: absolute;
@@ -45,6 +57,11 @@ const SearchInputContainer = styled.div`
     right: ${(props) => `${props.theme.size.default}px`};
     width: ${(props) => `${props.theme.size.default}px`};
     height: ${(props) => `${props.theme.size.default}px`};
+    @media ${devices.mobile} {
+      top: 6px;
+      right: 12px;
+    }
+
     path {
       fill: ${(props) => props.theme.color.main.accent};
     }
@@ -55,7 +72,19 @@ const SearchInputContainer = styled.div`
   }
 `;
 
-export const SearchInput: FC = () => {
+const VisibleMobile = styled.div`
+  display: none;
+  @media ${devices.mobile} {
+    display: block;
+  }
+`;
+
+type SearchInputProps = {
+  isOpen: boolean;
+  setIsOpen: (value: boolean) => void;
+};
+
+export const SearchInput: FC<SearchInputProps> = ({ isOpen, setIsOpen }) => {
   const [currentValue, setCurrentValue] = useState('');
   const searchInputRef = useRef<any>(null);
   const [blur, setBlur] = useState(true);
@@ -65,18 +94,43 @@ export const SearchInput: FC = () => {
   };
 
   return (
-    <SearchInputContainer>
-      <input
-        onChange={changeText}
-        ref={searchInputRef}
-        value={currentValue}
-        type='text'
-        onFocus={() => setBlur(false)}
-        onBlur={() => setBlur(true)}
-        placeholder={TitleVariant.searchPlaceholder}
-      />
-      <SearchSVG className='searchIcon' />
-      {!blur && <CloseSVG className='searchCancelIcon' data-test-id='button-search-close' />}
-    </SearchInputContainer>
+    <React.Fragment>
+      <VisibleMobile data-test-id='button-search-open'>
+        {!isOpen && (
+          <CircleButton
+            onClick={() => {
+              setIsOpen(!isOpen);
+            }}
+            type={ViewVariant.search}
+            icon={SearchSVG}
+            isActive={false}
+          />
+        )}
+      </VisibleMobile>
+      <SearchInputContainer isOpen={isOpen} data-test-id='input-search'>
+        <input
+          onChange={changeText}
+          ref={searchInputRef}
+          value={currentValue}
+          type='text'
+          onFocus={() => setBlur(false)}
+          onBlur={() => {
+            setIsOpen(false);
+            setBlur(true);
+          }}
+          placeholder={TitleVariant.searchPlaceholder}
+        />
+        <SearchSVG className='searchIcon' />
+
+        <span data-test-id='button-search-close'>
+          <CloseSVG
+            className='searchCancelIcon'
+            onClick={() => {
+              setIsOpen(false);
+            }}
+          />
+        </span>
+      </SearchInputContainer>
+    </React.Fragment>
   );
 };

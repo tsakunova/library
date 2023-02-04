@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { MenuSVG, SearchSVG, SortAscendingSVG, SquareFourSVG } from 'assets/icons';
 import { CircleButton } from 'components/buttons/circle-button';
 import { WithIconButton } from 'components/buttons/with-icon-button';
@@ -12,37 +12,31 @@ type FilterListProps = {
   typeView: ViewVariant;
 };
 
-export const FilterList: FC<FilterListProps> = ({ onViewClick, typeView }) => (
-  <Container>
-    <ButtonContainer isVisibleMobile={false}>
-      <SearchInput data-test-id='input-search' />
-      <WithIconButton title={TitleVariant.rating} icon={SortAscendingSVG} />
-    </ButtonContainer>
-    <ButtonContainer isVisibleMobile={true}>
-      <CircleButton
-        onClick={() => {}}
-        type={ViewVariant.search}
-        icon={SearchSVG}
-        isActive={false}
-        data-test-id='button-search-open'
-      />
-      <CircleButton onClick={() => {}} type={ViewVariant.sortDown} icon={SortAscendingSVG} isActive={false} />
-    </ButtonContainer>
-    <DefaultButtonContainer>
-      <CircleButton
-        onClick={onViewClick}
-        type={ViewVariant.window}
-        icon={SquareFourSVG}
-        isActive={typeView === ViewVariant.window}
-        testId='button-menu-view-window'
-      />
-      <CircleButton
-        onClick={onViewClick}
-        type={ViewVariant.list}
-        isActive={typeView === ViewVariant.list}
-        icon={MenuSVG}
-        testId='button-menu-view-list'
-      />
-    </DefaultButtonContainer>
-  </Container>
-);
+export const FilterList: FC<FilterListProps> = ({ onViewClick, typeView }) => {
+  const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
+
+  return (
+    <Container>
+      <ButtonContainer isSearchOpen={isSearchOpen}>
+        <SearchInput isOpen={isSearchOpen} setIsOpen={setIsSearchOpen} />
+        <WithIconButton title={TitleVariant.rating} isOpen={isSearchOpen} icon={SortAscendingSVG} />
+      </ButtonContainer>
+      <DefaultButtonContainer isSearchOpen={isSearchOpen}>
+        <CircleButton
+          onClick={onViewClick}
+          type={ViewVariant.window}
+          icon={SquareFourSVG}
+          isActive={typeView === ViewVariant.window}
+          testId='button-menu-view-window'
+        />
+        <CircleButton
+          onClick={onViewClick}
+          type={ViewVariant.list}
+          isActive={typeView === ViewVariant.list}
+          icon={MenuSVG}
+          testId='button-menu-view-list'
+        />
+      </DefaultButtonContainer>
+    </Container>
+  );
+};

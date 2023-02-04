@@ -25,8 +25,7 @@ export const BookSectionLayout: FC<LayoutProps> = ({
   const Arrow = useMemo(() => (isOpen ? UpSVG : DownSVG), [isOpen]);
 
   const expandSection = useCallback(() => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    withArrow && setIsOpen(!isOpen);
+    if (withArrow) setIsOpen(!isOpen);
   }, [isOpen, withArrow]);
 
   return (
