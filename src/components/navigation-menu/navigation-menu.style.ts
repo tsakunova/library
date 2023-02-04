@@ -30,4 +30,8 @@ export const BurgerMenuContainer = styled.div<{ isShowMenu: boolean }>`
   @media ${devices.tablet} {
     display: flex;
   }
+  @media ${devices.mobile} {
+    width: 90vw;
+    padding: 32px 0 8px 0px;
+  }
 `;

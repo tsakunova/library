@@ -1,9 +1,10 @@
 import { coverPreview } from 'assets/images';
+import { BookCategory } from 'types/enum';
 import { CommentDTO, FullBookDTO } from 'types/types';
 
 export const MOCK_BOOK: FullBookDTO = {
   id: 5,
-  category: 'history',
+  category: BookCategory.history,
   title: 'Грокаем алгоритмы. Иллюстрированное пособие для программистов и любопытствующих',
   imageLink: coverPreview,
   author: 'Адитья Бхаргава',

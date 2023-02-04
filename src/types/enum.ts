@@ -26,6 +26,22 @@ export enum RouteNames {
   contract = 'contract',
   terms = 'terms',
   all = 'all',
+  profile = 'profile',
+  signOut = 'signOut',
+}
+
+export enum RouteTestId {
+  books = 'showcase',
+  contract = 'contract',
+  terms = 'terms',
+  all = 'books',
+  profile = 'profile',
+  signOut = 'signOut',
+}
+
+export enum TestIdType {
+  burger = 'burger',
+  navigation = 'navigation',
 }
 
 export enum BookSectionTitle {

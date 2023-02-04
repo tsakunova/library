@@ -36,6 +36,7 @@ export const BookPage: FC = () => {
         </InfoSection>
         <ButtonContainer>
           <PrimaryButton
+            data-test-id='button-rating'
             type={ButtonType.primaryButton}
             title={TitleVariant.addRating}
             stylesClass='buttonOnBookPage'

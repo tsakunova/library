@@ -7,7 +7,7 @@ type BurgerMenuProps = {
 };
 
 export const BurgerMenu: FC<BurgerMenuProps> = ({ isOpen }) => (
-  <BurgerMenuContainer>
+  <BurgerMenuContainer data-test-id='button-burger'>
     <BurgerLine isOpen={isOpen} />
   </BurgerMenuContainer>
 );

@@ -27,7 +27,7 @@ export const Header: FC<{ user: UserDTO }> = ({ user }) => {
           </Link>
           <MenuContainer onClick={burgerOpenHandler} onMouseOut={burgerOpenHandler}>
             <BurgerMenu isOpen={isOpen} />
-            <NavigationMenu isShowMenu={isOpen} isBurgerMenu={true} />
+            <NavigationMenu data-test-id='burger-navigation' isShowMenu={isOpen} isBurgerMenu={true} />
           </MenuContainer>
 
           <Title>Библиотека</Title>

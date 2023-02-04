@@ -55,7 +55,7 @@ export const theme = {
   size: {
     default: 16,
     button: {
-      padding: '12px 23px',
+      padding: '12px 0',
       paddingS: '10px 16px',
       borderRadius: '20px',
       icon: '38px',

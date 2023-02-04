@@ -76,7 +76,7 @@ export const SearchInput: FC = () => {
         placeholder={TitleVariant.searchPlaceholder}
       />
       <SearchSVG className='searchIcon' />
-      {!blur && <CloseSVG className='searchCancelIcon' />}
+      {!blur && <CloseSVG className='searchCancelIcon' data-test-id='button-search-close' />}
     </SearchInputContainer>
   );
 };

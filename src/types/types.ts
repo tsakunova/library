@@ -1,4 +1,4 @@
-import { BookCategory, RouteNames } from './enum';
+import { BookCategory, RouteNames, RouteTestId } from './enum';
 
 export type UserDTO = {
   name: string;
@@ -6,6 +6,7 @@ export type UserDTO = {
 };
 export type NavMenuItemList = {
   listTitle: string;
+  testId: RouteTestId;
   items: Array<{
     name: string;
     count: number;
@@ -15,13 +16,15 @@ export type NavMenuItemList = {
 
 export type NavMenuType = {
   route: RouteNames;
+  isOnlyBurger: boolean;
   title: string;
+  testId: RouteTestId;
   list?: NavMenuItemList;
 };
 
 export type FullBookDTO = {
   id?: number;
-  category: string;
+  category: BookCategory;
   title: string;
   imageLink?: string;
   author: string;

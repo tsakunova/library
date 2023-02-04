@@ -30,6 +30,9 @@ export const BurgerLine = styled.span<{ isOpen: boolean }>`
     top: 50%;
     background-color: ${(props) => props.theme.color.main.dark};
     transition: transform 0.2s ease-in-out;
+    @media ${devices.mobile} {
+      width: 20px;
+    }
   }
   &::after {
     transform: ${(props) => props.isOpen && 'rotate(45deg)'};
@@ -38,5 +41,8 @@ export const BurgerLine = styled.span<{ isOpen: boolean }>`
   &::before {
     transform: ${(props) => props.isOpen && 'rotate(-45deg)'};
     top: ${(props) => (props.isOpen ? '50%' : '7px')};
+  }
+  @media ${devices.mobile} {
+    width: 20px;
   }
 `;

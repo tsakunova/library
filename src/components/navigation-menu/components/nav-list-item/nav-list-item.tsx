@@ -1,11 +1,12 @@
-import { FC } from 'react';
-import { NavLink } from 'react-router-dom';
-import { RouteNames } from 'types/enum';
+import React, { FC, useCallback, useMemo } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
+import { DownSVG, UpSVG } from 'assets/icons';
+import { RouteNames, TestIdType } from 'types/enum';
 import { NavMenuType } from 'types/types';
 
 import { BooksThemeList } from '../books-theme-list';
 
-import { CurrentActiveLink, NavListItemLi } from './nav-list-item.style';
+import { BeforeBlockLine, CurrentActiveLink, CurrentLink, NavListItemLi } from './nav-list-item.style';
 
 type NavListItemProps = {
   item: NavMenuType;
@@ -13,6 +14,7 @@ type NavListItemProps = {
   setIsBookListOpen: (value: boolean) => any;
   isBooksListOpen: boolean;
   activeRoute: RouteNames;
+  isBurgerMenu?: boolean;
 };
 
 export const NavListItem: FC<NavListItemProps> = ({
@@ -21,13 +23,37 @@ export const NavListItem: FC<NavListItemProps> = ({
   isBooksListOpen,
   setIsBookListOpen,
   activeRoute,
-}) => (
-  <NavListItemLi>
-    <CurrentActiveLink onClick={() => onPressRoute(item.route)}>
-      <NavLink to={`/${item.route}`} className={({ isActive }) => (isActive ? 'active mainLink' : 'mainLink')}>
-        {item.title}
-      </NavLink>
-    </CurrentActiveLink>
-    {item.list && activeRoute === RouteNames.books && isBooksListOpen && <BooksThemeList list={item.list} />}
-  </NavListItemLi>
-);
+  isBurgerMenu = false,
+}) => {
+  const testId = useMemo(
+    () => (isBurgerMenu ? `${TestIdType.burger}-${item.testId}` : `${TestIdType.navigation}-${item.testId}`),
+    [isBurgerMenu, item.testId]
+  );
+
+  const Arrow = useMemo(() => (isBooksListOpen ? UpSVG : DownSVG), [isBooksListOpen]);
+
+  if (item.isOnlyBurger && !isBurgerMenu) return null;
+
+  return (
+    <React.Fragment>
+      {item.route === RouteNames.profile && <BeforeBlockLine />}
+      <NavListItemLi onClick={() => onPressRoute(item.route)}>
+        <CurrentLink data-test-id={testId}>
+          <CurrentActiveLink>
+            <NavLink to={`/${item.route}`} className={({ isActive }) => (isActive ? 'active' : undefined)}>
+              <span>{item.title}</span>
+              {item.list && activeRoute === RouteNames.books && <Arrow />}
+            </NavLink>
+          </CurrentActiveLink>
+        </CurrentLink>
+        {item.list && (
+          <BooksThemeList
+            list={item.list}
+            isListOpen={isBooksListOpen && activeRoute === RouteNames.books}
+            isBurgerMenu={isBurgerMenu}
+          />
+        )}
+      </NavListItemLi>
+    </React.Fragment>
+  );
+};

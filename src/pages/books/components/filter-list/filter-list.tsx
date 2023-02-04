@@ -15,11 +15,17 @@ type FilterListProps = {
 export const FilterList: FC<FilterListProps> = ({ onViewClick, typeView }) => (
   <Container>
     <ButtonContainer isVisibleMobile={false}>
-      <SearchInput />
+      <SearchInput data-test-id='input-search' />
       <WithIconButton title={TitleVariant.rating} icon={SortAscendingSVG} />
     </ButtonContainer>
     <ButtonContainer isVisibleMobile={true}>
-      <CircleButton onClick={() => {}} type={ViewVariant.search} icon={SearchSVG} isActive={false} />
+      <CircleButton
+        onClick={() => {}}
+        type={ViewVariant.search}
+        icon={SearchSVG}
+        isActive={false}
+        data-test-id='button-search-open'
+      />
       <CircleButton onClick={() => {}} type={ViewVariant.sortDown} icon={SortAscendingSVG} isActive={false} />
     </ButtonContainer>
     <DefaultButtonContainer>
