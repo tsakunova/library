@@ -1,4 +1,4 @@
-import React, { FC, useRef, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import { CloseSVG, SearchSVG } from 'assets/icons';
 import { CircleButton } from 'components/buttons/circle-button';
 import { devices } from 'consts';
@@ -75,7 +75,22 @@ const SearchInputContainer = styled.div<{ isOpen: boolean }>`
 const VisibleMobile = styled.div`
   display: none;
   @media ${devices.mobile} {
-    display: block;
+    display: flex;
+  }
+`;
+
+const CloseButton = styled.span<{ isBlur: boolean }>`
+  display: ${(props) => (props.isBlur ? 'none' : 'block')};
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: ${(props) => `${props.theme.size.default}px`};
+  height: ${(props) => `${props.theme.size.default}px`};
+
+  path {
+    fill: ${(props) => props.theme.color.main.accent};
   }
 `;
 
@@ -92,6 +107,10 @@ export const SearchInput: FC<SearchInputProps> = ({ isOpen, setIsOpen }) => {
   const changeText = (event: any) => {
     setCurrentValue(event.target.value);
   };
+
+  useEffect(() => {
+    if (isOpen) searchInputRef.current.focus();
+  });
 
   return (
     <React.Fragment>
@@ -121,15 +140,14 @@ export const SearchInput: FC<SearchInputProps> = ({ isOpen, setIsOpen }) => {
           placeholder={TitleVariant.searchPlaceholder}
         />
         <SearchSVG className='searchIcon' />
-
-        <span data-test-id='button-search-close'>
+        <CloseButton data-test-id='button-search-close' isBlur={blur}>
           <CloseSVG
             className='searchCancelIcon'
             onClick={() => {
               setIsOpen(false);
             }}
           />
-        </span>
+        </CloseButton>
       </SearchInputContainer>
     </React.Fragment>
   );

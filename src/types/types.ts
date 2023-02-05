@@ -26,10 +26,10 @@ export type FullBookDTO = {
   id?: number;
   category: BookCategory;
   title: string;
-  imageLink?: string;
+  imageLink?: string[];
   author: string;
   about: string;
-  rating?: number;
+  rating: number;
   isBooked: boolean;
   bookedTill?: string;
   publishingOffice?: string;

@@ -11,6 +11,7 @@ export const Container = styled.div`
 `;
 
 export const BookImage = styled.div`
+  background-color: ${(props) => props.theme.color.grey.black5};
   border: ${(props) => `1px solid ${props.theme.color.grey.black40}`};
   overflow: hidden;
   display: flex;

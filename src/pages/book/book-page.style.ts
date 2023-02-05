@@ -21,8 +21,8 @@ export const InfoSection = styled.div`
 
 export const ButtonContainer = styled.div`
   width: 350px;
-  // margin-top: 44px;
-  margin-top: 10px;
+  margin-top: 46px;
+  //margin-top: 10px;
   .buttonOnBookPage {
     padding: 14px 0;
     border-radius: 30px;

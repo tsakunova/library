@@ -49,9 +49,10 @@ export const DescriptionSection = styled.div`
 export const ImageContainer = styled.div`
   width: 445px;
   height: 594px;
+  background-color: ${(props) => props.theme.color.grey.black5};
   border: ${(props) => `1px solid ${props.theme.color.grey.black40}`};
   border-radius: 10px;
-  overflow: hidden;
+  // overflow: hidden;
   display: flex;
   flex: 1;
   justify-content: center;
@@ -123,7 +124,7 @@ export const AboutAuthor = styled.h5`
 
 export const ButtonContainer = styled.div`
   width: 350px;
-  margin-bottom: ${(props) => `${props.theme.size.default * 2}px`};
+  // margin-bottom: ${(props) => `${props.theme.size.default * 2}px`};
   .buttonOnBookPage {
     padding: 14px 0;
     border-radius: 30px;

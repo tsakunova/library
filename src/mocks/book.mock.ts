@@ -1,4 +1,4 @@
-import { coverPreview } from 'assets/images';
+import { book, book2, book3, book4, coverPreview } from 'assets/images';
 import { BookCategory } from 'types/enum';
 import { CommentDTO, FullBookDTO } from 'types/types';
 
@@ -6,7 +6,7 @@ export const MOCK_BOOK: FullBookDTO = {
   id: 5,
   category: BookCategory.history,
   title: 'Грокаем алгоритмы. Иллюстрированное пособие для программистов и любопытствующих',
-  imageLink: coverPreview,
+  imageLink: [coverPreview, book, book2, book4, book3],
   author: 'Адитья Бхаргава',
   about:
     'Алгоритмы — это всего лишь пошаговые алгоритмы решения задач, и большинство таких задач уже были кем-то решены, протестированы и проверены. Можно, конечно, погрузится в глубокую философию гениального Кнута, изучить многостраничные фолианты с доказательствами и обоснованиями, но хотите ли вы тратить на это свое время?\n Откройте великолепно иллюстрированную книгу и вы сразу поймете, что алгоритмы — это просто. А грокать алгоритмы — это веселое и увлекательное занятие.',
