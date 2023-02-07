@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { MenuSVG, SearchSVG, SortAscendingSVG, SquareFourSVG } from 'assets/icons';
+import { MenuSVG, SortAscendingSVG, SquareFourSVG } from 'assets/icons';
 import { CircleButton } from 'components/buttons/circle-button';
 import { WithIconButton } from 'components/buttons/with-icon-button';
 import { SearchInput } from 'components/forms/search-input';

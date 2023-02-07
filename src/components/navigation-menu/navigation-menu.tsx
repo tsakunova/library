@@ -1,5 +1,8 @@
-import { FC, useCallback, useMemo, useRef, useState } from 'react';
+import React, { FC, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { NAVIGATION_MENU_LIST } from 'consts';
+import { useOnClickOutside } from 'hooks/use-on-click-outside';
+import { useOnMount } from 'hooks/use-on-mount';
 import { RouteNames } from 'types/enum';
 
 import { NavListItem } from './components/nav-list-item';
@@ -7,21 +10,51 @@ import { BurgerMenuContainer, Container } from './navigation-menu.style';
 
 type NavMenuProps = {
   isBurgerMenu: boolean;
+  setIsShowMenu?: (value: boolean) => void;
   isShowMenu?: boolean;
 };
 
-export const NavigationMenu: FC<NavMenuProps> = ({ isBurgerMenu, isShowMenu = true }) => {
+export const NavigationMenu: FC<NavMenuProps> = ({
+  isBurgerMenu,
+  isShowMenu = true,
+  setIsShowMenu = () => undefined,
+}) => {
   const [activeRoute, setActiveRoute] = useState<RouteNames>(RouteNames.books);
-  const [isBooksListOpen, setIsBooksListOpen] = useState<boolean>(true);
+  const [isBooksListOpen, setIsBooksListOpen] = useState<boolean>(false);
+  const ref = useRef(null);
+  const params = useParams();
+
+  useOnMount(() => {
+    if (activeRoute === RouteNames.books) setIsBooksListOpen(true);
+  });
+
+  useEffect(() => {
+    if (activeRoute === RouteNames.books) setIsBooksListOpen(true);
+  }, [activeRoute]);
+
+  useEffect(() => {
+    if (params.bookId) setIsBooksListOpen(false);
+  }, [params.bookId]);
 
   const onPressRoute = useCallback(
-    (route: RouteNames) => {
+    (route: RouteNames, e: React.SyntheticEvent) => {
+      e.stopPropagation();
       setActiveRoute(route);
       if (route === RouteNames.books) {
         setIsBooksListOpen(!isBooksListOpen);
+        if (isBooksListOpen) setIsShowMenu(true);
+      } else {
+        setIsShowMenu(false);
       }
     },
-    [isBooksListOpen, setIsBooksListOpen]
+    [isBooksListOpen, setIsShowMenu]
+  );
+  const onPressCategory = useCallback(
+    (e: React.SyntheticEvent) => {
+      e.stopPropagation();
+      setIsShowMenu(false);
+    },
+    [setIsShowMenu]
   );
 
   const renderMenu = useCallback(
@@ -33,17 +66,17 @@ export const NavigationMenu: FC<NavMenuProps> = ({ isBurgerMenu, isShowMenu = tr
           item={item}
           activeRoute={activeRoute}
           onPressRoute={onPressRoute}
+          onPressCategory={onPressCategory}
           isBooksListOpen={isBooksListOpen}
-          setIsBookListOpen={setIsBooksListOpen}
         />
       )),
-    [activeRoute, isBooksListOpen, isBurgerMenu, onPressRoute, setIsBooksListOpen]
+    [activeRoute, isBooksListOpen, isBurgerMenu, onPressCategory, onPressRoute]
   );
 
   const StyledComponent = useMemo(() => (isBurgerMenu ? BurgerMenuContainer : Container), [isBurgerMenu]);
 
   return (
-    <StyledComponent isShowMenu={isShowMenu} data-test-id={isBurgerMenu && 'burger-navigation'}>
+    <StyledComponent ref={ref} isShowMenu={isShowMenu} data-test-id={isBurgerMenu && 'burger-navigation'}>
       <ul>{renderMenu()}</ul>
     </StyledComponent>
   );

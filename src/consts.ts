@@ -5,15 +5,15 @@ import { NavMenuType } from 'types/types';
 export const DEFAULT_WIDTH = 1440;
 
 export const sizes = {
-  mobile: '320px',
-  tablet: '768px',
-  laptop: '1440px',
+  tablet: 650,
+  laptop: 1120,
+  max: 1440,
 };
 
 export const devices = {
-  mobile: `(max-width: ${sizes.mobile})`,
-  tablet: `(max-width: ${sizes.tablet})`,
-  laptop: `(max-width: ${sizes.laptop})`,
+  mobile: `(max-width: ${sizes.tablet}px)`,
+  tablet: `(max-width: ${sizes.laptop}px)`,
+  laptop: `(max-width: ${sizes.max}px)`,
 };
 
 export const NAVIGATION_MENU_LIST: NavMenuType[] = [
@@ -24,6 +24,7 @@ export const NAVIGATION_MENU_LIST: NavMenuType[] = [
     testId: RouteTestId.books,
     list: {
       testId: RouteTestId.all,
+      route: RouteNames.booksAll,
       listTitle: 'Все книги',
       items: [
         {

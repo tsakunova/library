@@ -1,54 +1,18 @@
-import React, { FC, useRef, useState } from 'react';
-import { book } from 'assets/images';
-import { FreeMode, Navigation, Thumbs } from 'swiper';
-import { type Swiper as SwiperRef, EffectCoverflow } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { keyExtractor } from 'utils/key-extractor';
+import { FC } from 'react';
+import { sizes } from 'consts';
+import { useWindowSize } from 'hooks/use-window-size';
 
-import { ImageContainer } from './slider.style';
+import { SwiperBig } from './components/swiper-big';
+import { SwiperSmall } from './components/swiper-small';
 
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
+import 'swiper/css/pagination';
 
 export const BookSlider: FC<{ images: string[] }> = ({ images }) => {
-  const [activeThumbs, setActiveThumbs] = useState<any>();
+  const size = useWindowSize();
 
-  return (
-    <ImageContainer>
-      <Swiper
-        data-test-id='slide-big'
-        modules={[Navigation, Thumbs]}
-        grabCursor={true}
-        thumbs={{ swiper: activeThumbs && !activeThumbs.destroyed ? activeThumbs : null }}
-        className='images-slider'
-      >
-        {images.map((item, index) => (
-          <SwiperSlide key={keyExtractor(index)}>
-            <img src={item} alt={`Slide${index}`} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
-      <Swiper
-        slidesPerView='auto'
-        freeMode={true}
-        navigation={true}
-        centerInsufficientSlides={true}
-        modules={[Thumbs]}
-        watchSlidesProgress={true}
-        onSwiper={setActiveThumbs}
-        className='images-slider-thumbs'
-      >
-        {images.map((item, index) => (
-          // eslint-disable-next-line react/no-array-index-key
-          <SwiperSlide key={index}>
-            <div className='images-slider-thumbs-wrapper' data-test-id='slide-mini'>
-              <img src={item} alt={`Slide${index}`} />
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </ImageContainer>
-  );
+  return size.width! <= sizes.laptop ? <SwiperSmall images={images} /> : <SwiperBig images={images} />;
 };

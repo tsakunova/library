@@ -7,6 +7,7 @@ export type UserDTO = {
 export type NavMenuItemList = {
   listTitle: string;
   testId: RouteTestId;
+  route: RouteNames;
   items: Array<{
     name: string;
     count: number;

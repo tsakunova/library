@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 export const BurgerMenuContainer = styled.div`
   display: none;
+  cursor: pointer;
 
   @media ${devices.tablet} {
     display: block;
@@ -12,6 +13,8 @@ export const BurgerMenuContainer = styled.div`
 
 export const BurgerLine = styled.span<{ isOpen: boolean }>`
   display: block;
+  z-index: 100;
+  cursor: pointer;
   width: 27px;
   height: 2px;
   background-color: ${(props) => (props.isOpen ? 'transparent' : props.theme.color.main.dark)};

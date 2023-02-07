@@ -37,7 +37,7 @@ const routes = createHashRouter([
       },
       {
         path: `/${RouteNames.contract}`,
-        element: <Books />,
+        element: <ContractList />,
       },
       {
         path: `/${RouteNames.profile}`,

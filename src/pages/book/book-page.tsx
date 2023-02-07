@@ -6,7 +6,7 @@ import { Wrapper } from 'index.style';
 import { MOCK_COMMENTS } from 'mocks/book.mock';
 import { mockBooks } from 'mocks/books.mock';
 import { ButtonType, TitleVariant } from 'types/enum';
-import { CommentDTO, FullBookDTO } from 'types/types';
+import { CommentDTO } from 'types/types';
 
 import { BookAbout } from './components/book-about';
 import { BookRatingSection } from './components/book-rating';

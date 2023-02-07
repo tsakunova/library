@@ -9,6 +9,9 @@ export const NavListItemLi = styled.li`
 
   @media ${devices.mobile} {
     padding-left: ${(props) => `${props.theme.size.default}px}`};
+    &:last-child {
+      padding-bottom: ${(props) => `${props.theme.size.default}px}`};
+    }
   }
 `;
 
@@ -17,6 +20,10 @@ export const BeforeBlockLine = styled.div`
   width: 100%;
   background-color: ${(props) => props.theme.color.grey.black20};
   margin-bottom: ${(props) => `${props.theme.size.default * 2}px}`};
+`;
+
+export const LinkContent = styled.span`
+  display: block;
 `;
 
 export const CurrentActiveLink = styled.span`

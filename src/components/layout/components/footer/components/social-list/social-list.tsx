@@ -4,7 +4,7 @@ import { keyExtractor } from 'utils/key-extractor';
 
 import { SocialContainer } from './social-list.style';
 
-const SocialItem: FC<{ item: { icon: any; src: string } }> = React.memo(({ item }) => {
+const SocialItem: FC<{ item: { icon: string; src: string } }> = React.memo(({ item }) => {
   const Icon = item.icon;
 
   return (

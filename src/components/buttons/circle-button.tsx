@@ -1,8 +1,7 @@
-import React, { FC, ReactElement, ReactNode, useCallback, useState } from 'react';
-import { SortAscendingSVG, SortDescendingSVG, SquareFourSVG } from 'assets/icons';
+import React, { FC, useCallback } from 'react';
 import { devices } from 'consts';
 import styled from 'styled-components';
-import { ButtonType, ViewVariant } from 'types/enum';
+import { ViewVariant } from 'types/enum';
 
 type Props = {
   type: ViewVariant;
