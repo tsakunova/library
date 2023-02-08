@@ -1,26 +1,30 @@
 import { IconFacebook, IconInstagram, IconLinkedin, IconVK } from 'assets/icons';
-import { BookCategory, RouteNames } from 'types/enum';
+import { BookCategory, RouteNames, RouteTestId } from 'types/enum';
 import { NavMenuType } from 'types/types';
 
 export const DEFAULT_WIDTH = 1440;
 
 export const sizes = {
-  mobile: '320px',
-  tablet: '768px',
-  laptop: '1440px',
+  tablet: 650,
+  laptop: 1120,
+  max: 1440,
 };
 
 export const devices = {
-  mobile: `(max-width: ${sizes.mobile})`,
-  tablet: `(max-width: ${sizes.tablet})`,
-  laptop: `(max-width: ${sizes.laptop})`,
+  mobile: `(max-width: ${sizes.tablet}px)`,
+  tablet: `(max-width: ${sizes.laptop}px)`,
+  laptop: `(max-width: ${sizes.max}px)`,
 };
 
 export const NAVIGATION_MENU_LIST: NavMenuType[] = [
   {
     title: 'Витрина книг',
     route: RouteNames.books,
+    isOnlyBurger: false,
+    testId: RouteTestId.books,
     list: {
+      testId: RouteTestId.all,
+      route: RouteNames.booksAll,
       listTitle: 'Все книги',
       items: [
         {
@@ -98,11 +102,27 @@ export const NAVIGATION_MENU_LIST: NavMenuType[] = [
   },
   {
     title: 'Правила пользования',
+    isOnlyBurger: false,
     route: RouteNames.terms,
+    testId: RouteTestId.terms,
   },
   {
     title: 'Договор оферты',
+    isOnlyBurger: false,
     route: RouteNames.contract,
+    testId: RouteTestId.contract,
+  },
+  {
+    title: 'Профиль',
+    isOnlyBurger: true,
+    route: RouteNames.profile,
+    testId: RouteTestId.profile,
+  },
+  {
+    title: 'Выход',
+    isOnlyBurger: true,
+    route: RouteNames.signOut,
+    testId: RouteTestId.signOut,
   },
 ];
 

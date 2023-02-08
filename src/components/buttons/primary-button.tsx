@@ -19,7 +19,7 @@ const PrimaryButtonContainer = styled.button`
   cursor: pointer;
   & p {
     font: ${(props) => props.theme.fonts.buttonSmall};
-    letter-spacing: 0, 2px;
+    letter-spacing: 0.2px;
     text-transform: uppercase;
   }
   &.primaryButton {

@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 export const TitleBookSection = styled.h5<{ isPadding: boolean }>`
   font: ${(props) => props.theme.fonts.desktopH5};
+  display: flex;
+  align-items: center;
   @media ${devices.tablet} {
     font: ${(props) => props.theme.fonts.subtitleLarge};
   }
@@ -17,5 +19,8 @@ export const TitleBookSection = styled.h5<{ isPadding: boolean }>`
     @media ${devices.tablet} {
       display: none;
     }
+  }
+  & svg {
+    margin: 0 24px;
   }
 `;

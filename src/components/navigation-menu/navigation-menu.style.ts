@@ -28,6 +28,13 @@ export const BurgerMenuContainer = styled.div<{ isShowMenu: boolean }>`
   box-shadow: ${(props) => props.theme.color.shadow.card};
 
   @media ${devices.tablet} {
+    width: 502px;
     display: flex;
+    max-height: 87vh;
+    overflow: auto;
+  }
+  @media ${devices.mobile} {
+    width: 288px;
+    padding: 32px 0 8px 0px;
   }
 `;

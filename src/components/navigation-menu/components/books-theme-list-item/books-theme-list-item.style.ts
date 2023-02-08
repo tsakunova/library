@@ -9,4 +9,7 @@ export const BookListItemLi = styled.li`
   span {
     color: ${(props) => props.theme.color.grey.black40};
   }
+  & .active {
+    color: ${(props) => props.theme.color.main.accent};
+  }
 `;

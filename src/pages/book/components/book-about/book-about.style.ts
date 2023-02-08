@@ -7,7 +7,7 @@ export const BookAboutContainer = styled.div`
   margin-bottom: 42px;
   @media ${devices.tablet} {
     column-gap: ${(props) => `${props.theme.size.default * 2}px`};
-    row-gap: ${(props) => `${props.theme.size.default}px`};
+    row-gap: 48px;
     grid-template-columns: min-content auto;
     margin-bottom: 52px;
   }
@@ -49,6 +49,7 @@ export const DescriptionSection = styled.div`
 export const ImageContainer = styled.div`
   width: 445px;
   height: 594px;
+  background-color: ${(props) => props.theme.color.grey.black5};
   border: ${(props) => `1px solid ${props.theme.color.grey.black40}`};
   border-radius: 10px;
   overflow: hidden;
@@ -123,7 +124,6 @@ export const AboutAuthor = styled.h5`
 
 export const ButtonContainer = styled.div`
   width: 350px;
-  margin-bottom: ${(props) => `${props.theme.size.default * 2}px`};
   .buttonOnBookPage {
     padding: 14px 0;
     border-radius: 30px;

@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import { BookCategory, RouteNames } from 'types/enum';
 
@@ -10,11 +10,15 @@ type BooksThemeItemProps = {
     count: number;
     category: BookCategory;
   };
+  onPress: (e: React.SyntheticEvent) => void;
 };
 
-export const BooksThemeListItem: FC<BooksThemeItemProps> = ({ item }) => (
-  <BookListItemLi>
-    <NavLink to={`/${RouteNames.books}/${item.category}`}>
+export const BooksThemeListItem: FC<BooksThemeItemProps> = ({ item, onPress }) => (
+  <BookListItemLi onClick={(e) => onPress(e)}>
+    <NavLink
+      to={`/${RouteNames.books}/${item.category}`}
+      className={({ isActive }) => (isActive ? 'active' : undefined)}
+    >
       {item.name} <span>{item.count}</span>
     </NavLink>
   </BookListItemLi>

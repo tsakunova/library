@@ -25,7 +25,23 @@ export enum RouteNames {
   books = 'books',
   contract = 'contract',
   terms = 'terms',
-  all = 'all',
+  booksAll = 'all',
+  profile = 'profile',
+  signOut = 'signOut',
+}
+
+export enum RouteTestId {
+  books = 'showcase',
+  contract = 'contract',
+  terms = 'terms',
+  all = 'books',
+  profile = 'profile',
+  signOut = 'signOut',
+}
+
+export enum TestIdType {
+  burger = 'burger',
+  navigation = 'navigation',
 }
 
 export enum BookSectionTitle {
@@ -62,11 +78,4 @@ export enum BookCategory {
   handbook = 'handbook',
   fantasy = 'fantasy',
   humor = 'humor',
-}
-
-export enum StarRatingType {
-  small = 'medium',
-  medium = 'medium',
-  large = 'large',
-  xSmall = 'xSmall',
 }

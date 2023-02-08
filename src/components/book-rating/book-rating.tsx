@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from 'react';
+import { FC, useCallback } from 'react';
 import { EmptyStar } from 'assets/icons';
 import { theme } from 'style/theme';
 import { TitleVariant } from 'types/enum';
@@ -11,12 +11,12 @@ type BookRatingProps = {
   stylesClass?: string;
 };
 
-export const BookRating: FC<BookRatingProps> = ({ rating, stylesClass }) => {
+export const BookRating: FC<BookRatingProps> = ({ rating = 0, stylesClass }) => {
   const renderStars = useCallback(() => {
     if (!rating) return <p>{TitleVariant.notRating}</p>;
 
     return [...Array(5)].map((item, index) =>
-      index < Math.round(rating!) ? (
+      index < Math.round(rating) ? (
         <EmptyStar fill={theme.color.main.stars} key={keyExtractor(index)} />
       ) : (
         <EmptyStar fill={theme.color.main.white} key={keyExtractor(index)} />

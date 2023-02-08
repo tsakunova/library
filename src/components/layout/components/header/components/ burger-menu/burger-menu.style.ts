@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 export const BurgerMenuContainer = styled.div`
   display: none;
+  cursor: pointer;
 
   @media ${devices.tablet} {
     display: block;
@@ -12,6 +13,8 @@ export const BurgerMenuContainer = styled.div`
 
 export const BurgerLine = styled.span<{ isOpen: boolean }>`
   display: block;
+  z-index: 100;
+  cursor: pointer;
   width: 27px;
   height: 2px;
   background-color: ${(props) => (props.isOpen ? 'transparent' : props.theme.color.main.dark)};
@@ -30,6 +33,9 @@ export const BurgerLine = styled.span<{ isOpen: boolean }>`
     top: 50%;
     background-color: ${(props) => props.theme.color.main.dark};
     transition: transform 0.2s ease-in-out;
+    @media ${devices.mobile} {
+      width: 20px;
+    }
   }
   &::after {
     transform: ${(props) => props.isOpen && 'rotate(45deg)'};
@@ -38,5 +44,8 @@ export const BurgerLine = styled.span<{ isOpen: boolean }>`
   &::before {
     transform: ${(props) => props.isOpen && 'rotate(-45deg)'};
     top: ${(props) => (props.isOpen ? '50%' : '7px')};
+  }
+  @media ${devices.mobile} {
+    width: 20px;
   }
 `;

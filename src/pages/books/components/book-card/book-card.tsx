@@ -27,7 +27,7 @@ export const BookCard: FC<BookProps> = ({
     <Card data-test-id='card'>
       <Content>
         <NavLink to={`/${RouteNames.books}/${category}/${id}`}>
-          <Image>{imageLink ? <img alt={title} src={imageLink} /> : <CoverCat />}</Image>
+          <Image>{imageLink?.length ? <img alt={title} src={imageLink[0]} /> : <CoverCat />}</Image>
           {view === ViewVariant.window ? (
             <WindowOther>
               <BookRating rating={rating} stylesClass='ratingInCard' />

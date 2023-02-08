@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from 'react';
+import { FC, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { LogoClevertec } from 'assets/icons';
 import { NavigationMenu } from 'components/navigation-menu';
@@ -9,12 +9,14 @@ import { BurgerMenu } from './components/ burger-menu';
 import { HeaderAuthorization } from './components/header-authorisation';
 import { HeaderContainer, LeftHeaderContainer, LogoContainer, MenuContainer, Title } from './header.style';
 
-export const Header: FC<{ user: UserDTO }> = ({ user }) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-
+export const Header: FC<{ user: UserDTO; isOpenBurger: boolean; setIsOpenBurger: (value: boolean) => void }> = ({
+  user,
+  isOpenBurger,
+  setIsOpenBurger,
+}) => {
   const burgerOpenHandler = useCallback(() => {
-    setIsOpen(!isOpen);
-  }, [isOpen]);
+    setIsOpenBurger(!isOpenBurger);
+  }, [isOpenBurger, setIsOpenBurger]);
 
   return (
     <Wrapper>
@@ -25,9 +27,14 @@ export const Header: FC<{ user: UserDTO }> = ({ user }) => {
               <LogoClevertec />
             </LogoContainer>
           </Link>
-          <MenuContainer onClick={burgerOpenHandler} onMouseOut={burgerOpenHandler}>
-            <BurgerMenu isOpen={isOpen} />
-            <NavigationMenu isShowMenu={isOpen} isBurgerMenu={true} />
+          <MenuContainer onClick={burgerOpenHandler}>
+            <BurgerMenu isOpen={isOpenBurger} />
+            <NavigationMenu
+              data-test-id='burger-navigation'
+              setIsShowMenu={setIsOpenBurger}
+              isShowMenu={isOpenBurger}
+              isBurgerMenu={true}
+            />
           </MenuContainer>
 
           <Title>Библиотека</Title>

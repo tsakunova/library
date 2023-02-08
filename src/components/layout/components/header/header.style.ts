@@ -21,8 +21,12 @@ export const LogoContainer = styled.div`
   }
 `;
 
-export const MenuContainer = styled.div`
+export const MenuContainer = styled.div.attrs((_) => ({
+  id: 'burger',
+}))`
   display: none;
+  width: 30px;
+  height: 30px;
   justify-content: space-between;
   align-items: center;
   position: relative;
