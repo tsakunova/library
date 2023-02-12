@@ -8,6 +8,10 @@ export const theme = {
       dark30: 'rgba(54, 54, 54, 0.3)',
       hover: 'FF740F',
     },
+    chips: {
+      negative: '#FEEBEA',
+      borderNegative: '1.5px solid #F42C4F',
+    },
     grey: {
       black40: '#A7A7A7',
       black10: '#EBEBEB',
@@ -33,6 +37,7 @@ export const theme = {
     h2: '500 44px/54px Montserrat',
     h3: '700 32px/40px Montserrat',
     mobileH3: '700 18px/28px Montserrat',
+    selectedTheme: '700 16px/24px Montserrat',
     h4: '700 24px/30px Montserrat',
     h5: 'bold 22px/32px Montserrat',
     desktopH5: '700 18px/28px Montserrat',
