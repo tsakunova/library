@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import { CommentDTO } from 'types/types';
-import { keyExtractor } from 'utils/key-extractor';
 
 import { BookCommentItem } from '../comment-item';
 
@@ -12,8 +11,6 @@ type CommentsListProps = {
 
 export const CommentsList: FC<CommentsListProps> = ({ comments }) => (
   <ListContainer>
-    {comments.map((comment, index) => (
-      <BookCommentItem key={`comment-${keyExtractor(index)}`} comment={comment} />
-    ))}
+    {comments && comments.map((comment) => <BookCommentItem key={comment.id} comment={comment} />)}
   </ListContainer>
 );

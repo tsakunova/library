@@ -2,7 +2,9 @@ import { FC, useState } from 'react';
 import { MenuSVG, SortAscendingSVG, SquareFourSVG } from 'assets/icons';
 import { CircleButton } from 'components/buttons/circle-button';
 import { WithIconButton } from 'components/buttons/with-icon-button';
-import { SearchInput } from 'components/forms/search-input';
+import { SearchInput } from 'components/forms/search-input/search-input';
+import { useTypedSelector } from 'hooks/use-typed-selector';
+import { selectErrors } from 'store/selectors';
 import { TitleVariant, ViewVariant } from 'types/enum';
 
 import { ButtonContainer, Container, DefaultButtonContainer } from './filter-list.style';
@@ -14,6 +16,9 @@ type FilterListProps = {
 
 export const FilterList: FC<FilterListProps> = ({ onViewClick, typeView }) => {
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
+  const isError = useTypedSelector(selectErrors);
+
+  if (isError) return null;
 
   return (
     <Container>

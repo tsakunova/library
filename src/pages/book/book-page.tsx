@@ -1,12 +1,14 @@
-import { FC, useCallback, useState } from 'react';
+import { FC, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { PrimaryButton } from 'components/buttons/primary-button';
-import { useOnMount } from 'hooks/use-on-mount';
+import { ToastMessages, ToastType } from 'components/layout/components/toast/toast.enum';
+import { useAppDispatch } from 'hooks/use-app-dispatch';
+import { useToast } from 'hooks/use-toast';
+import { useTypedSelector } from 'hooks/use-typed-selector';
 import { Wrapper } from 'index.style';
-import { MOCK_COMMENTS } from 'mocks/book.mock';
-import { mockBooks } from 'mocks/books.mock';
+import { fetchCurrentBook } from 'store/current-book/current-book-actions';
+import { resetBook } from 'store/current-book/current-book-slice';
 import { ButtonType, TitleVariant } from 'types/enum';
-import { CommentDTO } from 'types/types';
 
 import { BookAbout } from './components/book-about';
 import { BookRatingSection } from './components/book-rating';
@@ -16,24 +18,28 @@ import { BookContainer, ButtonContainer, InfoSection } from './book-page.style';
 
 export const BookPage: FC = () => {
   const { bookId } = useParams();
-  const [comments, setComments] = useState<CommentDTO[]>([]);
+  const dispatch = useAppDispatch();
+  const { isLoading, isError } = useTypedSelector((state) => state.currentBook);
+  const currentBook = useTypedSelector((state) => state.currentBook.currentBook);
 
-  const currentBook = mockBooks.find((book) => book.id === Number(bookId));
+  useToast(ToastType.negative, ToastMessages.mainError, isError);
 
-  useOnMount(() => {
-    setComments(MOCK_COMMENTS);
-  });
+  useEffect(() => {
+    if (bookId) dispatch(fetchCurrentBook(bookId));
+  }, [bookId, dispatch]);
 
-  const pressBookingButton = useCallback(() => console.log(currentBook!.id), [currentBook]);
+  useEffect((): (() => void) => () => dispatch(resetBook()), [dispatch]);
+
+  if (isError || !currentBook) return null;
 
   return (
     <Wrapper>
-      <BookContainer>
-        <BookAbout book={currentBook!} onBookedButtonPress={pressBookingButton} />
+      <BookContainer isLoading={isLoading}>
+        <BookAbout book={currentBook} onBookedButtonPress={() => {}} />
         <InfoSection>
-          <BookRatingSection rating={currentBook!.rating} />
-          <FullInfoSection book={currentBook!} />
-          <CommentsSection comments={comments} />
+          <BookRatingSection rating={currentBook.rating} />
+          <FullInfoSection book={currentBook} />
+          <CommentsSection comments={currentBook.comments} />
         </InfoSection>
         <ButtonContainer>
           <PrimaryButton
