@@ -13,7 +13,7 @@ type CommentsSectionProps = {
 
 export const CommentsSection: FC<CommentsSectionProps> = ({ comments }) => (
   <BookSectionLayout isPadding={true} title={BookSectionTitle.comments} details={comments?.length} withArrow={true}>
-    <SectionContainer>
+    <SectionContainer data-test-id='reviews'>
       <CommentsList comments={comments} />
     </SectionContainer>
   </BookSectionLayout>

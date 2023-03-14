@@ -16,6 +16,7 @@ export enum UserAPIFields {
   lastName = 'lastName',
   phone = 'phone',
   identifier = 'identifier',
+  commentText = 'text',
 }
 
 export enum TitleVariant {
@@ -55,7 +56,11 @@ export enum TitleVariant {
   rating = 'По рейтингу',
   searchPlaceholder = 'Поиск книги или автора…',
   notRating = 'ещё нет оценок',
-  addRating = 'оценить книгу',
+  addRating = 'Оценить книгу',
+  addRatingTitle = 'Оцените книгу',
+  addRatingButton = 'Оценить',
+  yourRating = 'Ваша оценка',
+  ratingTextareaPlaceholder = 'Оставить отзыв',
   emptyCategory = 'В этой категории книг ещё нет',
   emptySearch = 'По запросу ничего не найдено',
 }
@@ -134,10 +139,6 @@ export enum BookCategory {
   handbook = 'Справочники',
   fantasy = 'Фантастика',
   humor = 'Юмор',
-}
-
-export enum ErrorsMessages {
-  nameTaken = 'Email or Username are already taken',
 }
 
 export enum ValidationErrors {

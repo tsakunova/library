@@ -5,6 +5,13 @@ export type UserDTO = {
   avatarLink?: string;
 };
 
+export type AddCommentType = {
+  rating: number;
+  text: string;
+  book: string;
+  user: string;
+};
+
 export type ResetPasswordData = {
   password: string;
   passwordConfirmation: string;

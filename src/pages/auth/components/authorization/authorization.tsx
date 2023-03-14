@@ -11,8 +11,8 @@ import { useIsBlurWithValidation } from 'hooks/use-is-blur-with-validation';
 import { useTypedSelector } from 'hooks/use-typed-selector';
 import { BlockTitle, ContainerInputWithLabel, FormSection, HasProfile, HintErrorSpan } from 'pages/auth/auth.style';
 import { FORM_INPUT_TEXT } from 'pages/auth/const';
-import { loginRequest } from 'store/login/login-actions';
-import { logout } from 'store/login/login-slice';
+import { loginRequest } from 'store/auth/login/login-actions';
+import { logout } from 'store/auth/login/login-slice';
 import { ButtonType, FormButtonType, RouteNames, TitleVariant, UserAPIFields, ValidationErrors } from 'types/enum';
 import { UserAPI } from 'types/types';
 

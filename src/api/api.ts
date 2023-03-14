@@ -9,6 +9,7 @@ export enum ApiPath {
   resetPass = 'auth/reset-password',
   categories = 'categories',
   books = 'books',
+  comments = 'comments',
 }
 export const axiosInstance = axios.create({
   withCredentials: true,

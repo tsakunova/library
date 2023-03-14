@@ -9,6 +9,7 @@ type Props = {
   stylesClass?: string;
   handlerType?: FormButtonType;
   onClick?: () => void;
+  testId?: string;
 };
 
 const PrimaryButtonContainer = styled.button`
@@ -74,8 +75,9 @@ const PrimaryButtonContainer = styled.button`
 `;
 
 export const PrimaryButton: FC<Props> = React.memo(
-  ({ title, type, disabled = false, stylesClass, handlerType = FormButtonType.button, onClick }) => (
+  ({ title, type, disabled = false, stylesClass, handlerType = FormButtonType.button, onClick, testId = '' }) => (
     <PrimaryButtonContainer
+      data-test-id={testId}
       onClick={onClick}
       type={handlerType}
       disabled={disabled}

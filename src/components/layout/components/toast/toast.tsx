@@ -15,7 +15,7 @@ export const Toast: FC = () => {
   useEffect(() => {
     setTimeout(() => {
       dispatch(hideToast());
-    }, 10000);
+    }, 3000);
   }, [dispatch]);
 
   const closeToast = () => {
@@ -29,7 +29,7 @@ export const Toast: FC = () => {
           <Icon />
           <p>{toast?.toastMessage}</p>
         </ToastInfo>
-        <CloseButton onClick={closeToast}>
+        <CloseButton data-test-id='alert-close' onClick={closeToast}>
           <CloseSVG />
         </CloseButton>
       </Component>

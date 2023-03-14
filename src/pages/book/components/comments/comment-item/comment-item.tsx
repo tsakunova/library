@@ -19,21 +19,21 @@ export const BookCommentItem: FC<CommentProps> = ({ comment }) => {
   });
 
   return (
-    <CommentContainer>
+    <CommentContainer data-test-id='comment-wrapper'>
       <ShortInfoContainer>
         <AvatarImg
           size='32px'
           bgImage={comment.user.avatarUrl ? getImageURL(comment.user.avatarUrl) : commentsNoAvatar}
         />
         <DateAndName>
-          <p>
+          <p data-test-id='comment-author'>
             {comment.user.firstName} {comment.user.lastName}
           </p>
-          <p>{date}</p>
+          <p data-test-id='comment-date'>{date}</p>
         </DateAndName>
       </ShortInfoContainer>
       <BookRating rating={comment.rating} stylesClass='ratingInComments' />
-      {comment.text && <CommentText>{comment.text}</CommentText>}
+      {comment.text && <CommentText data-test-id='comment-text'>{comment.text}</CommentText>}
     </CommentContainer>
   );
 };
