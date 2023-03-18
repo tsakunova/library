@@ -1,13 +1,14 @@
-import { FC, useCallback, useEffect, useState } from 'react';
+import { FC, SyntheticEvent, useCallback, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { PrimaryButton } from 'components/buttons/primary-button';
 import { ModalType } from 'components/layout/components/modal-in-app/enum';
-import { ToastMessages, ToastType } from 'components/layout/components/toast/toast.enum';
+import { ToastType, ToastVariant } from 'components/layout/components/toast/toast.enum';
 import { useAppDispatch } from 'hooks/use-app-dispatch';
 import { useModal } from 'hooks/use-modal';
 import { useToast } from 'hooks/use-toast';
 import { useTypedSelector } from 'hooks/use-typed-selector';
 import { Wrapper } from 'index.style';
+import { hideBookingToast } from 'store/booking/booking-slice';
 import { hideCommentToast } from 'store/comment/comment-slice';
 import { fetchCurrentBook } from 'store/current-book/current-book-actions';
 import { resetBook } from 'store/current-book/current-book-slice';
@@ -25,34 +26,47 @@ import { BookContainer, ButtonContainer, InfoSection } from './book-page.style';
 export const BookPage: FC = () => {
   const { bookId } = useParams();
   const { isSuccess, isError: isErrorComment } = useTypedSelector((state) => state.comment);
+  const {
+    isSuccess: isSuccessBooking,
+    isError: isErrorBooking,
+    toastType,
+  } = useTypedSelector((state) => state.booking);
   const dispatch = useAppDispatch();
   const { isLoading, isError } = useTypedSelector((state) => state.currentBook);
   const currentBook = useTypedSelector(selectBookWithSortedCommentsByDate);
   const withMyComment = useTypedSelector(selectBookWithMyRating);
 
-  useToast(ToastType.positive, ToastMessages.addRatingSuccess, isSuccess);
-  useToast(ToastType.negative, ToastMessages.addRatingError, isErrorComment);
-  useToast(ToastType.negative, ToastMessages.mainError, isError);
+  useToast(ToastVariant.positive, isSuccess, ToastType.rate);
+  useToast(ToastVariant.negative, isErrorComment, ToastType.rate);
+  useToast(ToastVariant.positive, isSuccessBooking, toastType!);
+  useToast(ToastVariant.negative, isErrorBooking, toastType!);
+  useToast(ToastVariant.negative, isError, ToastType.main);
 
   const { isShow, setIsShow } = useModal(ModalType.rating);
 
-  const showModalForRate = useCallback(() => {
-    setIsShow(true);
-    dispatch(setModal({ isShow, modalType: ModalType.rating }));
-  }, [dispatch, isShow, setIsShow]);
+  const { showModalForBooking } = useModal(ModalType.booking, currentBook);
+
+  const showModalForRate = useCallback(
+    (e: SyntheticEvent) => {
+      setIsShow(true);
+      dispatch(setModal({ isShow, modalType: ModalType.rating }));
+    },
+    [dispatch, isShow, setIsShow]
+  );
 
   useEffect(() => {
     if (bookId) dispatch(fetchCurrentBook(bookId));
   }, [bookId, dispatch]);
 
   useEffect(() => {
-    if (isSuccess && bookId) dispatch(fetchCurrentBook(bookId));
-  }, [bookId, dispatch, isSuccess]);
+    if (bookId && (isSuccess || isSuccessBooking)) dispatch(fetchCurrentBook(bookId));
+  }, [bookId, dispatch, isSuccess, isSuccessBooking]);
 
   useEffect(
     (): (() => void) => () => {
       dispatch(resetBook());
       dispatch(hideCommentToast());
+      dispatch(hideBookingToast());
     },
     [dispatch]
   );
@@ -62,7 +76,7 @@ export const BookPage: FC = () => {
   return (
     <Wrapper>
       <BookContainer isLoading={isLoading}>
-        <BookAbout book={currentBook} onBookedButtonPress={() => {}} />
+        <BookAbout book={currentBook} onBookedButtonPress={showModalForBooking} />
         <InfoSection>
           <BookRatingSection rating={currentBook.rating} />
           <FullInfoSection book={currentBook} />

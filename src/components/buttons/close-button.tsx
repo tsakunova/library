@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { CloseSVG } from 'assets/icons';
+import { devices } from 'consts';
 import styled from 'styled-components';
 
 type Props = {
@@ -20,6 +21,10 @@ const CloseButtonContainer = styled.button`
   background: ${(props) => props.theme.color.grey.black5};
   border: none;
   outline: none;
+  @media ${devices.mobile} {
+    right: ${(props) => `${props.theme.size.default}px`};
+    top: ${(props) => `${props.theme.size.default}px`};
+  }
   & svg {
     width: 14px;
     height: 14px;

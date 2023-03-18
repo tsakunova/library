@@ -11,11 +11,9 @@ const getDateOff = (bookedTill: string) => {
 export const getButtonStyles = (isBooked?: boolean, bookedTill?: string) => {
   const buttonType = isBooked ? ButtonType.secondaryButton : ButtonType.primaryButton;
 
-  const buttonTitle = isBooked
-    ? bookedTill
-      ? `${TitleVariant.busy} ${getDateOff(bookedTill)}`
-      : TitleVariant.booked
-    : TitleVariant.booking;
+  const bookedTitle = bookedTill ? `${TitleVariant.busy} ${getDateOff(bookedTill)}` : TitleVariant.booked;
+
+  const buttonTitle = isBooked ? bookedTitle : TitleVariant.booking;
 
   return {
     buttonType,

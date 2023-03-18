@@ -1,3 +1,4 @@
+import { devices } from 'consts';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -7,21 +8,34 @@ export const Container = styled.div`
   gap: ${(props) => `${props.theme.size.default * 2}px`};
   padding: 48px 56px;
   margin: 0 auto;
-  z-index: 1000;
+  @media ${devices.mobile} {
+    padding: 42px 16px 32px;
+    gap: 24px;
+  }
   & .addRating {
     gap: 19px;
     align-items: center;
     justify-content: center;
+    @media ${devices.mobile} {
+      gap: ${(props) => `${props.theme.size.default}px`};
+    }
     & svg {
       cursor: pointer;
       width: 33px;
       height: 33px;
+      @media ${devices.mobile} {
+        width: 26px;
+        height: 26px;
+      }
     }
   }
 `;
 export const Title = styled.h4`
   font: ${(props) => props.theme.fonts.h4};
   text-align: center;
+  @media ${devices.mobile} {
+    font: ${(props) => props.theme.fonts.mobileH3};
+  }
 `;
 
 export const SubTitle = styled.p`
@@ -39,7 +53,9 @@ export const StyledTextArea = styled.textarea`
   outline: none;
   resize: none;
   margin-bottom: 52px;
-
+  @media ${devices.mobile} {
+    margin-bottom: 44px;
+  }
   ::placeholder {
     font: ${(props) => props.theme.fonts.bodySmall};
     color: ${(props) => props.theme.color.grey.black40};

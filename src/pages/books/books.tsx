@@ -1,5 +1,5 @@
 import { FC, useCallback, useEffect, useState } from 'react';
-import { ToastMessages, ToastType } from 'components/layout/components/toast/toast.enum';
+import { ToastType, ToastVariant } from 'components/layout/components/toast/toast.enum';
 import { useAppDispatch } from 'hooks/use-app-dispatch';
 import { useToast } from 'hooks/use-toast';
 import { useTypedSelector } from 'hooks/use-typed-selector';
@@ -19,13 +19,25 @@ export const Books: FC = () => {
   const booksList = useTypedSelector(selectBooksWithSearchFilter);
   const isError = useTypedSelector(({ books }) => books.isError);
   const searchValue = useTypedSelector(({ utils }) => utils.searchString);
+  const {
+    isSuccess: isSuccessBooking,
+    isError: isErrorBooking,
+    toastType,
+  } = useTypedSelector((state) => state.booking);
 
-  useToast(ToastType.negative, ToastMessages.mainError, isError);
+  useToast(ToastVariant.positive, isSuccessBooking, toastType!);
+  useToast(ToastVariant.negative, isErrorBooking, toastType!);
+  useToast(ToastVariant.negative, isError, ToastType.main);
+
   const [activeView, setActiveView] = useState<ViewVariant>(ViewVariant.window);
 
   useEffect(() => {
     dispatch(fetchBooks());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (isSuccessBooking) dispatch(fetchBooks());
+  }, [dispatch, isSuccessBooking]);
 
   useEffect(
     () => () => {

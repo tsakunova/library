@@ -10,6 +10,7 @@ export enum ApiPath {
   categories = 'categories',
   books = 'books',
   comments = 'comments',
+  bookings = 'bookings',
 }
 export const axiosInstance = axios.create({
   withCredentials: true,

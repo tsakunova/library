@@ -1,10 +1,10 @@
 import { ToastNegativeSVG, ToastPositiveSVG } from 'assets/icons';
 
-import { ToastType } from './toast.enum';
+import { ToastVariant } from './toast.enum';
 import { NegativeToast, PositiveToast } from './toast.style';
 
-export const getToastStyles = (toastType: ToastType = ToastType.negative) => {
-  if (toastType === ToastType.negative)
+export const getToastStyles = (toastVariant: ToastVariant = ToastVariant.negative) => {
+  if (toastVariant === ToastVariant.negative)
     return {
       styledComponent: NegativeToast,
       icon: ToastNegativeSVG,

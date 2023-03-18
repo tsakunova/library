@@ -1,5 +1,6 @@
-import { FC } from 'react';
+import { FC, SyntheticEvent } from 'react';
 import { PrimaryButton } from 'components/buttons/primary-button';
+import { useTypedSelector } from 'hooks/use-typed-selector';
 import { BookSectionTitle } from 'types/enum';
 import { FullBookDTO } from 'types/types';
 import { getButtonStyles } from 'utils/get-button-styles';
@@ -19,16 +20,17 @@ import { ImagesSection } from './components';
 
 type BookAboutProps = {
   book: FullBookDTO;
-  onBookedButtonPress: () => void;
+  onBookedButtonPress: (e: SyntheticEvent) => void;
 };
 
 export const BookAbout: FC<BookAboutProps> = ({
-  book: { authors, title, images, description, booking, issueYear },
+  book: { authors, title, images, description, booking, issueYear, delivery },
   onBookedButtonPress,
 }) => {
-  const { buttonType, buttonTitle } = getButtonStyles(booking?.order, booking?.dateOrder);
-
-  const renderAuthors = () => authors?.map((item, index) => <span key={keyExtractor(index)}>{item}</span>);
+  const { buttonType, buttonTitle } = getButtonStyles(!!delivery || !!booking, delivery?.dateHandedTo);
+  const userId = useTypedSelector(({ login }) => login.user?.id);
+  const isDisabled = (!!(booking?.customerId !== userId) && !!booking) || !!delivery?.dateHandedTo;
+  const renderAuthors = () => authors?.map((item, index) => <span key={keyExtractor(index)}>{item} </span>);
 
   return (
     <BookAboutContainer>
@@ -40,10 +42,12 @@ export const BookAbout: FC<BookAboutProps> = ({
         </AboutAuthor>
         <ButtonContainer>
           <PrimaryButton
+            onClick={onBookedButtonPress}
+            testId='booking-button'
             stylesClass='buttonOnBookPage'
             type={buttonType}
             title={buttonTitle}
-            disabled={booking?.order && !!booking.dateOrder}
+            disabled={isDisabled}
           />
         </ButtonContainer>
       </ContentContainer>

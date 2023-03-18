@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ApiPath, axiosInstance } from 'api/api';
+import { AxiosError } from 'axios';
 import { UserAPI } from 'types/types';
 
 export const loginRequest = createAsyncThunk(ApiPath.auth, async (user: UserAPI, { rejectWithValue }) => {
@@ -10,13 +11,11 @@ export const loginRequest = createAsyncThunk(ApiPath.auth, async (user: UserAPI,
     localStorage.setItem('token', data.jwt);
 
     return data;
-  } catch (err) {
-    const {
-      response: { data, status },
-    } = err as unknown as {
-      response: { data: string; status: number };
-    };
-
-    return rejectWithValue(status);
+  } catch (e) {
+    if (e instanceof AxiosError) {
+      return rejectWithValue(e.response?.status);
+    }
   }
+
+  return 500;
 });

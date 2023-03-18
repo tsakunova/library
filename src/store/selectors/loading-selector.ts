@@ -7,6 +7,7 @@ const selectCurrentBookLoading = (state: RootState) => state.currentBook.isLoadi
 const selectLoginLoading = (state: RootState) => state.login.isLoading;
 const selectRegistrationLoading = (state: RootState) => state.registration.isLoading;
 const selectCommentLoading = (state: RootState) => state.comment.isLoading;
+const selectBookingLoading = (state: RootState) => state.booking.isLoading;
 
 export const selectLoading = createSelector(
   [
@@ -16,7 +17,8 @@ export const selectLoading = createSelector(
     selectLoginLoading,
     selectRegistrationLoading,
     selectCommentLoading,
+    selectBookingLoading,
   ],
-  (categories, books, currentBook, login, registration, comment) =>
-    categories || books || currentBook || login || registration || comment
+  (categories, books, currentBook, login, registration, comment, booking) =>
+    categories || books || currentBook || login || registration || comment || booking
 );

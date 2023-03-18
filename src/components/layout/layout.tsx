@@ -4,7 +4,6 @@ import { BookBreadcrumbs } from 'components/book-breadcrumbs';
 import { NavigationMenu } from 'components/navigation-menu';
 import { PrivateRouter } from 'components/private/private';
 import { useTypedSelector } from 'hooks/use-typed-selector';
-import { selectErrors } from 'store/selectors/error-selector';
 import { RouteNames } from 'types/enum';
 
 import { Footer } from './components/footer';
@@ -40,7 +39,7 @@ export const Layout: FC = () => {
         />
       )}
       {pathBook && <BookBreadcrumbs />}
-      <MainWrapper>
+      <MainWrapper data-test-id='content'>
         <MainContainer>
           {withMenu && <NavigationMenu isBurgerMenu={false} />}
           <PrivateRouter />

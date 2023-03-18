@@ -8,8 +8,8 @@ import { useTypedSelector } from 'hooks/use-typed-selector';
 import { addCommentForCurrentBook } from 'store/comment/comment-action';
 import { selectBookAndUserID } from 'store/selectors/comment-selector';
 import { hideModal } from 'store/utils/utils-slice';
+import { AddCommentType } from 'types/actions.types';
 import { ButtonType, FormButtonType, TitleVariant, UserAPIFields } from 'types/enum';
-import { AddCommentType } from 'types/types';
 
 import { Container, StyledTextArea, SubTitle, Title } from './rating-modal.style';
 

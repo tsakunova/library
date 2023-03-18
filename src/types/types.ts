@@ -5,28 +5,6 @@ export type UserDTO = {
   avatarLink?: string;
 };
 
-export type AddCommentType = {
-  rating: number;
-  text: string;
-  book: string;
-  user: string;
-};
-
-export type ResetPasswordData = {
-  password: string;
-  passwordConfirmation: string;
-  code: string;
-};
-
-export type RegistrationUserData = {
-  email: string;
-  username: string;
-  password: string;
-  firstName: string;
-  lastName: string;
-  phone: string;
-};
-
 export type UserAPI = {
   jwt: string;
   id: string;

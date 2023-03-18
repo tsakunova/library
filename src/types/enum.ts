@@ -63,6 +63,9 @@ export enum TitleVariant {
   ratingTextareaPlaceholder = 'Оставить отзыв',
   emptyCategory = 'В этой категории книг ещё нет',
   emptySearch = 'По запросу ничего не найдено',
+  calendarTitle = 'Выбор даты бронирования',
+  calendarTitleEdit = 'Изменение даты бронирования',
+  endBooking = 'отменить бронь',
 }
 
 export enum ViewVariant {

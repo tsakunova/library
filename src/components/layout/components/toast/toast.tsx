@@ -10,7 +10,7 @@ import { getToastStyles } from './toast.utils';
 export const Toast: FC = () => {
   const toast = useTypedSelector(({ utils }) => utils.toast);
   const dispatch = useAppDispatch();
-  const { icon: Icon, styledComponent: Component } = getToastStyles(toast?.toastType);
+  const { icon: Icon, styledComponent: Component } = getToastStyles(toast?.toastVariant);
 
   useEffect(() => {
     setTimeout(() => {

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ApiPath, axiosInstance } from 'api/api';
-import { ResetPasswordData } from 'types/types';
+import { ResetPasswordData } from 'types/actions.types';
 
 export const forgotRequest = createAsyncThunk(
   ApiPath.forgotPass,

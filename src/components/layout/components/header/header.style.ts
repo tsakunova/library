@@ -25,6 +25,7 @@ export const LogoContainer = styled.div`
 export const MenuContainer = styled.div.attrs((_) => ({
   id: 'burger',
 }))`
+  z-index: 10;
   display: none;
   width: 30px;
   height: 30px;
