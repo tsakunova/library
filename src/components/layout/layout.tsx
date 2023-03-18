@@ -9,6 +9,7 @@ import { RouteNames } from 'types/enum';
 import { Footer } from './components/footer';
 import { Header } from './components/header';
 import { Loader } from './components/loader';
+import { ModalInApp } from './components/modal-in-app';
 import { Toast } from './components/toast';
 import { Container, MainContainer, MainWrapper, Overlay } from './layout.style';
 
@@ -20,12 +21,14 @@ export const Layout: FC = () => {
   const [isOpenUserMenu, setIsOpenUserMenu] = useState<boolean>(false);
   const [isOpenBurger, setIsOpenBurger] = useState<boolean>(false);
   const closeOverlay = useCallback(() => setIsOpenBurger(!isOpenBurger), [isOpenBurger]);
+  const { modal, toast } = useTypedSelector((state) => state.utils);
 
   return (
     <Container isOpenMenu={isOpenBurger}>
       <Loader />
-      <Toast />
-      <Overlay isShowMenu={isOpenBurger} onClick={closeOverlay} />
+      {!!toast && <Toast />}
+      {modal?.isShow && <ModalInApp />}
+      <Overlay isShow={isOpenBurger} onClick={closeOverlay} />
       {user && (
         <Header
           isOpenUserMenu={isOpenUserMenu}
@@ -36,7 +39,7 @@ export const Layout: FC = () => {
         />
       )}
       {pathBook && <BookBreadcrumbs />}
-      <MainWrapper>
+      <MainWrapper data-test-id='content'>
         <MainContainer>
           {withMenu && <NavigationMenu isBurgerMenu={false} />}
           <PrivateRouter />

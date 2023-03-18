@@ -10,8 +10,8 @@ import { useTypedSelector } from 'hooks/use-typed-selector';
 import { BlockTitle, FormSection, HasProfile } from 'pages/auth/auth.style';
 import { addNewPasswordRequest, forgotRequest } from 'store/auth/forgor/forgot-actions';
 import { resetPassword } from 'store/auth/forgor/forgot-slice';
+import { ResetPasswordData } from 'types/actions.types';
 import { ButtonType, FormButtonType, RouteNames, TitleVariant, UserAPIFields } from 'types/enum';
-import { ResetPasswordData } from 'types/types';
 
 import { ModalStatusWithHandler } from '../status-modals';
 

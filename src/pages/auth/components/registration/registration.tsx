@@ -9,8 +9,8 @@ import { BlockSubtitle, BlockTitle, HasProfile } from 'pages/auth/auth.style';
 import { REGISTRATION_STEPS_COUNT } from 'pages/auth/const';
 import { registrationRequest } from 'store/auth/registration/registration-actions';
 import { resetRegistration } from 'store/auth/registration/registration-slice';
+import { RegistrationUserData } from 'types/actions.types';
 import { ButtonType, FormButtonType, RouteNames, TitleVariant } from 'types/enum';
-import { RegistrationUserData } from 'types/types';
 
 import { ModalStatusWithHandler } from '../status-modals';
 

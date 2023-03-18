@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, SyntheticEvent } from 'react';
 import { PrimaryButton } from 'components/buttons/primary-button';
 import { Modal } from 'components/modal';
 import { BlockMessage, BlockTitle } from 'pages/auth/auth.style';
@@ -7,7 +7,7 @@ import { ButtonType, FormButtonType } from 'types/enum';
 import { Container } from './status.style';
 
 type Props = {
-  onClickHandler: () => void;
+  onClickHandler: (e: SyntheticEvent) => void;
   buttonText: string;
   title: string;
   text: string;

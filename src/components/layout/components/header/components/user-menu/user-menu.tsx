@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAppDispatch } from 'hooks/use-app-dispatch';
-import { logout } from 'store/login/login-slice';
+import { logout } from 'store/auth/login/login-slice';
 import { RouteNames, TitleVariant } from 'types/enum';
 
 import { MenuItem, UserMenuContainer } from './user-menu.style';

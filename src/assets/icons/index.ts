@@ -22,3 +22,4 @@ export { ReactComponent as LoaderSVG } from './loader.svg';
 export { ReactComponent as ToastPositiveSVG } from './toast-positive.svg';
 export { ReactComponent as ToastNegativeSVG } from './toast-negative.svg';
 export { default as cleverland } from './cleverland.svg';
+export { default as arrowDropDown } from './arrow-drop-down.svg';

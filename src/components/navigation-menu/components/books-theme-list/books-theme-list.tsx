@@ -1,6 +1,6 @@
 import { FC, useEffect, useMemo } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { ToastMessages, ToastType } from 'components/layout/components/toast/toast.enum';
+import { ToastType, ToastVariant } from 'components/layout/components/toast/toast.enum';
 import { useAppDispatch } from 'hooks/use-app-dispatch';
 import { useToast } from 'hooks/use-toast';
 import { useTypedSelector } from 'hooks/use-typed-selector';
@@ -29,7 +29,7 @@ export const BooksThemeList: FC<BooksThemeListProps> = ({ list, isBurgerMenu, is
   const user = useTypedSelector(({ login }) => login.user);
   const isError = useTypedSelector(selectErrors);
 
-  useToast(ToastType.negative, ToastMessages.mainError, isError);
+  useToast(ToastVariant.negative, isError, ToastType.main);
 
   useEffect(() => {
     if (user) {

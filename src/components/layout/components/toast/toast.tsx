@@ -10,12 +10,12 @@ import { getToastStyles } from './toast.utils';
 export const Toast: FC = () => {
   const toast = useTypedSelector(({ utils }) => utils.toast);
   const dispatch = useAppDispatch();
-  const { icon: Icon, styledComponent: Component } = getToastStyles(toast?.toastType);
+  const { icon: Icon, styledComponent: Component } = getToastStyles(toast?.toastVariant);
 
   useEffect(() => {
     setTimeout(() => {
       dispatch(hideToast());
-    }, 10000);
+    }, 3000);
   }, [dispatch]);
 
   const closeToast = () => {
@@ -29,7 +29,7 @@ export const Toast: FC = () => {
           <Icon />
           <p>{toast?.toastMessage}</p>
         </ToastInfo>
-        <CloseButton onClick={closeToast}>
+        <CloseButton data-test-id='alert-close' onClick={closeToast}>
           <CloseSVG />
         </CloseButton>
       </Component>

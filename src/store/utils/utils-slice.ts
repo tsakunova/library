@@ -6,6 +6,7 @@ const initialState: UtilsState = {
   toast: null,
   isDescendingSort: true,
   searchString: '',
+  modal: null,
 };
 
 export const utilsSlice = createSlice({
@@ -24,7 +25,13 @@ export const utilsSlice = createSlice({
     setSearchString: (state, action) => {
       state.searchString = action.payload;
     },
+    setModal: (state, action) => {
+      state.modal = action.payload;
+    },
+    hideModal: (state) => {
+      state.modal = null;
+    },
   },
 });
-export const { setToast, hideToast, setSortType, setSearchString } = utilsSlice.actions;
+export const { setToast, hideToast, setSortType, setSearchString, setModal, hideModal } = utilsSlice.actions;
 export const utilsReducer = utilsSlice.reducer;

@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ApiPath, axiosInstance } from 'api/api';
-import { RegistrationUserData } from 'types/types';
+import { AxiosError } from 'axios';
+import { RegistrationUserData } from 'types/actions.types';
 
 export const registrationRequest = createAsyncThunk(
   ApiPath.registration,
@@ -12,14 +13,12 @@ export const registrationRequest = createAsyncThunk(
       localStorage.setItem('token', data.jwt);
 
       return data;
-    } catch (err) {
-      const {
-        response: { data, status },
-      } = err as unknown as {
-        response: { data: string; status: number };
-      };
-
-      return rejectWithValue(status);
+    } catch (e) {
+      if (e instanceof AxiosError) {
+        return rejectWithValue(e.response?.status);
+      }
     }
+
+    return 500;
   }
 );

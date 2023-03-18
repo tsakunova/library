@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { DownSVG, UpSVG } from 'assets/icons';
 import { useAppDispatch } from 'hooks/use-app-dispatch';
-import { logout } from 'store/login/login-slice';
+import { logout } from 'store/auth/login/login-slice';
 import { RouteNames, TestIdType } from 'types/enum';
 import { NavMenuType } from 'types/types';
 

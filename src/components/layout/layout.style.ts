@@ -27,14 +27,14 @@ export const MainContainer = styled.div`
   }
 `;
 
-export const Overlay = styled.div<{ isShowMenu: boolean }>`
-  width: ${(props) => props.isShowMenu && '100vw'};
+export const Overlay = styled.div<{ isShow: boolean }>`
+  width: ${(props) => props.isShow && '100vw'};
   position: absolute;
   top: 0;
   left: 0;
   z-index: 5;
-  height: ${(props) => props.isShowMenu && '100vh'};
-  background-color: ${(props) => props.isShowMenu && props.theme.color.main.dark30};
+  height: ${(props) => props.isShow && '100vh'};
+  background-color: ${(props) => props.isShow && props.theme.color.main.dark30};
 `;
 
 export const MainWrapper = styled(Wrapper)`
