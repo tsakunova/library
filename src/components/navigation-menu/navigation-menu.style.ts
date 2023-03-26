@@ -18,18 +18,17 @@ export const BurgerMenuContainer = styled.div<{ isShowMenu: boolean }>`
   top: 20px;
   z-index: 10;
   background-color: ${(props) => props.theme.color.grey.black5};
-  left: ${(props) => (props.isShowMenu ? '0' : '-1000px')};
+  left: 0;
   font-size: 24px;
-  display: flex;
   margin-top: 20px;
   width: 65.5vw;
-  padding: 32px;
+  padding: ${(props) => `${props.theme.size.default * 2}px`};
   border-radius: 10px;
   box-shadow: ${(props) => props.theme.color.shadow.card};
 
   @media ${devices.tablet} {
     width: 502px;
-    display: flex;
+    display: ${(props) => (props.isShowMenu ? 'flex' : 'none')};
     max-height: 87vh;
     overflow: auto;
   }

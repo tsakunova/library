@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { ViewVariant } from 'types/enum';
+import { ViewVariant } from 'enums';
 import { MainBookDTO } from 'types/types';
 
 import { BookCard } from '../book-card';

@@ -1,14 +1,11 @@
-import { FC, useEffect, useMemo } from 'react';
+import { FC, useMemo } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { ToastType, ToastVariant } from 'components/layout/components/toast/toast.enum';
-import { useAppDispatch } from 'hooks/use-app-dispatch';
+import { ToastType, ToastVariant } from 'components/toast/toast.enum';
+import { BookCategory, RouteNames, TestIdType } from 'enums';
 import { useToast } from 'hooks/use-toast';
 import { useTypedSelector } from 'hooks/use-typed-selector';
-import { fetchCategories } from 'store/categories/categories-actions';
-import { resetCategories } from 'store/categories/categories-slice';
 import { selectBooksInCategoryWithCount } from 'store/selectors/categories-with-count';
 import { selectErrors } from 'store/selectors/error-selector';
-import { BookCategory, RouteNames, TestIdType } from 'types/enum';
 import { CategoriesDTO, NavMenuItemList } from 'types/types';
 
 import { BooksThemeListItem } from '../books-theme-list-item';
@@ -24,20 +21,10 @@ type BooksThemeListProps = {
 
 export const BooksThemeList: FC<BooksThemeListProps> = ({ list, isBurgerMenu, isListOpen, onPressCategory }) => {
   const { pathname } = useLocation();
-  const dispatch = useAppDispatch();
   const categories = useTypedSelector(selectBooksInCategoryWithCount || []);
-  const user = useTypedSelector(({ login }) => login.user);
   const isError = useTypedSelector(selectErrors);
 
   useToast(ToastVariant.negative, isError, ToastType.main);
-
-  useEffect(() => {
-    if (user) {
-      dispatch(fetchCategories());
-    }
-  }, [dispatch, user]);
-
-  useEffect((): (() => void) => () => dispatch(resetCategories()), [dispatch]);
 
   const getLinkStyle = (isActive: boolean) =>
     isActive || pathname === '/' || pathname === `/${RouteNames.books}` ? 'active' : undefined;

@@ -7,7 +7,7 @@ export const AuthorizationContainer = styled.div`
   align-items: center;
   overflow: hidden;
   gap: ${(props) => `${props.theme.size.default}px`};
-
+  cursor: pointer;
   @media ${devices.tablet} {
     display: none;
   }

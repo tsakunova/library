@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
+import { BookCategory, RouteNames } from 'enums';
 import { useTypedSelector } from 'hooks/use-typed-selector';
 import { Wrapper } from 'index.style';
-import { BookCategory, RouteNames } from 'types/enum';
 
 import { BookBreadcrumbsContainer, BookBreadcrumbsWrapper } from './book-breadcrumbs.style';
 

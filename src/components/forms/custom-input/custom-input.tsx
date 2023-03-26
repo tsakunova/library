@@ -1,6 +1,8 @@
 import { FC, useState } from 'react';
 import { FieldErrors, FieldValues, UseFormClearErrors, UseFormRegister, UseFormWatch, Validate } from 'react-hook-form';
 import { Checkmark, EyeClosed, EyeOpen } from 'assets/icons';
+import { useTypedSelector } from 'hooks/use-typed-selector';
+import { UserFormType } from 'store/utils/types';
 
 import {
   EyeToggler,
@@ -39,6 +41,7 @@ export const CustomInput: FC<CustomInputProps> = ({
   setIsBlur = () => null,
   withCheckmark = true,
 }) => {
+  const { userForm } = useTypedSelector(({ utils }) => utils);
   const [isVisiblePassword, setIsVisiblePassword] = useState(false);
   const tooglePassVisibility = () => {
     setIsVisiblePassword(!isVisiblePassword);
@@ -47,6 +50,8 @@ export const CustomInput: FC<CustomInputProps> = ({
   const isPassword = type === 'password';
   const passType = isVisiblePassword ? 'text' : 'password';
   const inputType = isPassword ? passType : type;
+  const isProfile = userForm?.type === UserFormType.edit;
+  const isDisabled = isProfile && !userForm.isDisabled;
 
   return (
     <div>
@@ -57,6 +62,7 @@ export const CustomInput: FC<CustomInputProps> = ({
           <TextInput
             {...register(`${name}`, { required, validate: { ...validation } })}
             type={inputType}
+            disabled={isDisabled}
             placeholder={placeholder}
             onBlur={() => {
               setIsBlur(true);

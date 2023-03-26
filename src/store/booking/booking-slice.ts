@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { ToastType } from 'components/layout/components/toast/toast.enum';
+import { ToastType } from 'components/toast/toast.enum';
 
 import { addBooking, deleteBooking, editBooking } from './booking-action';
 import { BookingState } from './types';
@@ -16,7 +16,7 @@ export const bookingSlice = createSlice({
   initialState,
 
   reducers: {
-    hideBookingToast: (state) => {
+    resetBooking: (state) => {
       state.isLoading = false;
       state.isError = false;
       state.isSuccess = false;
@@ -81,5 +81,5 @@ export const bookingSlice = createSlice({
   },
 });
 
-export const { hideBookingToast } = bookingSlice.actions;
+export const { resetBooking } = bookingSlice.actions;
 export const bookingReducer = bookingSlice.reducer;

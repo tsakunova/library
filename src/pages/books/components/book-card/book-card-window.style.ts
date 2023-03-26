@@ -81,12 +81,12 @@ export const WindowAbout = styled.div`
   }
   p {
     font: ${(props) => props.theme.fonts.bodySmall};
+    color: ${(props) => props.theme.color.grey.black70};
     @media ${devices.tablet} {
       display: -webkit-box;
       -webkit-line-clamp: 1;
       -webkit-box-orient: vertical;
       overflow: hidden;
-      color: ${(props) => props.theme.color.grey.black70};
       font: ${(props) => props.theme.fonts.h5Tablet};
       text-transform: uppercase;
     }

@@ -22,6 +22,6 @@ export const ButtonContainer = styled(DefaultButtonContainer)<{ isSearchOpen: bo
   display: flex;
   @media ${devices.mobile} {
     display: flex;
-    gap: ${(props) => (props.isSearchOpen ? 0 : '16px')};
+    gap: ${(props) => (props.isSearchOpen ? 0 : `${props.theme.size.default}px`)};
   }
 `;

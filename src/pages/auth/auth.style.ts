@@ -32,12 +32,13 @@ export const BlockMessage = styled.p`
   color: ${(props) => props.theme.color.main.dark};
 `;
 
-export const FormSection = styled.div`
+export const FormSection = styled.div<{ inProfile?: boolean }>`
   display: flex;
-  flex-direction: column;
-  gap: 18px;
+  flex-direction: ${(props) => (props.inProfile ? 'row' : 'column')};
+  gap: ${(props) => (props.inProfile ? '30px' : '18px')};
   @media ${devices.mobile} {
-    gap: 10px;
+    flex-direction: column;
+    gap: ${(props) => (props.inProfile ? '0px' : '10px')};
   }
 `;
 
@@ -75,6 +76,7 @@ export const HintErrorSpan = styled.span<{ isError?: boolean }>`
 `;
 
 export const ContainerInputWithLabel = styled.div`
+  flex: 1;
   min-height: 72px;
   gap: 2px;
 `;

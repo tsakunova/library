@@ -1,8 +1,101 @@
-import { RouteNames, RouteTestId } from './enum';
+import { RouteNames, RouteTestId } from '../enums/enum';
+
+export type MainBookDTO = {
+  issueYear?: number | string;
+  rating?: number;
+  title: string;
+  authors?: string[];
+  image?: ImagesType | string | null;
+  categories?: string[];
+  id: number;
+  booking?: {
+    id: number;
+    order: boolean;
+    dateOrder?: string;
+    customerId?: number;
+    customerFirstName?: string;
+    customerLastName?: string;
+  };
+  delivery?: {
+    id: number;
+    handed: boolean;
+    dateHandedFrom?: string;
+    dateHandedTo?: string;
+    recipientId?: number;
+    recipientFirstName?: string;
+    recipientLastName?: string;
+  };
+  histories?: {
+    id?: number;
+    userId?: number;
+  };
+};
 
 export type UserDTO = {
-  name: string;
-  avatarLink?: string;
+  id: number;
+  username: string;
+  email: string;
+  confirmed: boolean;
+  blocked: boolean;
+  createdAt: string;
+  updatedAt: string;
+  firstName: string;
+  lastName: string;
+  phone: string;
+  role: {
+    id: number;
+    name: string;
+    description: string;
+    type: string;
+  };
+  comments: Array<{
+    id: number;
+    rating?: number;
+    text: string;
+    bookId: number;
+  }>;
+
+  avatar: string;
+  booking: {
+    id: number;
+    order: boolean;
+    dateOrder: string;
+    book: {
+      id: number;
+      title: string;
+      rating?: number;
+      issueYear: string;
+      authors: string[];
+      image?: string | ImagesType | null;
+    };
+  };
+  delivery: {
+    id: number;
+    handed: boolean;
+    dateHandedFrom: string;
+    dateHandedTo: string;
+    book: {
+      id: number;
+      title: string;
+      rating?: number;
+      issueYear: string;
+      authors: string[];
+      image?: string | ImagesType | null;
+    };
+  };
+  history: {
+    id: number;
+    books: [
+      {
+        id: number;
+        title: string;
+        rating?: number;
+        issueYear: string;
+        authors: string[];
+        image?: string | ImagesType | null;
+      }
+    ];
+  };
 };
 
 export type UserAPI = {
@@ -45,38 +138,7 @@ export type CategoriesDTO = {
 };
 
 export type ImagesType = {
-  url: string;
-};
-
-export type MainBookDTO = {
-  issueYear?: number;
-  rating?: number;
-  title: string;
-  authors?: string[];
-  image?: ImagesType;
-  categories?: string[];
-  id: number;
-  booking?: {
-    id: number;
-    order: boolean;
-    dateOrder?: string;
-    customerId?: number;
-    customerFirstName?: string;
-    customerLastName?: string;
-  };
-  delivery?: {
-    id: number;
-    handed: boolean;
-    dateHandedFrom?: string;
-    dateHandedTo?: string;
-    recipientId?: number;
-    recipientFirstName?: string;
-    recipientLastName?: string;
-  };
-  histories?: Array<{
-    id?: number;
-    userId?: number;
-  }>;
+  url?: string;
 };
 
 export type FullBookDTO = {

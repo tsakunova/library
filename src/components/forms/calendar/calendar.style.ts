@@ -5,7 +5,7 @@ export const Container = styled.div`
   font: ${(props) => props.theme.fonts.infoLarge};
   background-color: ${(props) => props.theme.color.main.white};
   box-shadow: ${(props) => props.theme.color.shadow.card};
-  border-radius: 8px;
+  border-radius: ${(props) => `${props.theme.size.default / 2}px`};
   width: 256px;
   min-height: 240px;
   margin: 0 auto;

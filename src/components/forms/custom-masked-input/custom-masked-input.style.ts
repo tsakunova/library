@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+export const Container = styled.div`
+  min-height: 72px;
+  flex: 1;
+`;
 export const InputContainer = styled.div<{ isIntroLabel: boolean }>`
   width: 100%;
   height: 56px;
@@ -33,6 +37,7 @@ export const InputLabel = styled.p<{ isError: boolean }>`
   margin-bottom: ${(props) => `${props.theme.size.default}px`};
   font: ${(props) => props.theme.fonts.infoLarge};
   color: ${(props) => (props.isError ? props.theme.color.main.error : props.theme.color.grey.black40)};
+  letter-spacing: 0.2px;
 `;
 
 export const LabelIntroInput = styled.p`
@@ -42,6 +47,9 @@ export const LabelIntroInput = styled.p`
 
 export const InputWithDynamicalLabel = styled.div`
   width: 100%;
+  & input {
+    font: ${(props) => props.theme.fonts.bodySmall};
+  }
 `;
 
 export const EyeToggler = styled.button`

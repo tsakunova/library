@@ -1,5 +1,5 @@
 import { IconFacebook, IconInstagram, IconLinkedin, IconVK } from 'assets/icons';
-import { RouteNames, RouteTestId } from 'types/enum';
+import { RouteNames, RouteTestId } from 'enums';
 import { NavMenuType } from 'types/types';
 
 export const DEFAULT_WIDTH = 1440;

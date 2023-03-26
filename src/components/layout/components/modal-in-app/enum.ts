@@ -6,6 +6,6 @@ export enum ModalType {
 }
 export type AppModal = {
   modalType: ModalType;
-  isShow: boolean;
-  data: MainBookDTO | FullBookDTO | null;
+  isShow?: boolean;
+  data: MainBookDTO | FullBookDTO | string | null;
 };

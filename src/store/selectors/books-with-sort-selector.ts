@@ -1,6 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
+import { BookCategory } from 'enums';
 import { RootState } from 'store';
-import { BookCategory } from 'types/enum';
 
 const selectCurrentCategory = (state: RootState) => state.categories.currentCategory;
 const selectBooks = (state: RootState) => state.books.books;

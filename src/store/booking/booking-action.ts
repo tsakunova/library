@@ -20,5 +20,5 @@ export const editBooking = createAsyncThunk(`${ApiPath.bookings}/edit`, async (d
     customer: data.customer,
   };
 
-  await axiosInstance.post(`${ApiPath.bookings}/${data.bookingId}`, { data: { ...value } });
+  await axiosInstance.put(`${ApiPath.bookings}/${data.bookingId}`, { data: { ...value } });
 });

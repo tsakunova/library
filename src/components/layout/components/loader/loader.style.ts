@@ -4,8 +4,8 @@ export const Container = styled.div<{ isLoading: boolean }>`
   position: absolute;
   top: 0;
   left: 0;
+  bottom: 0;
   z-index: 1000;
-  height: 100vh;
   width: 100vw;
   background: ${(props) => props.theme.color.main.dark30};
   backdrop-filter: blur(10px);

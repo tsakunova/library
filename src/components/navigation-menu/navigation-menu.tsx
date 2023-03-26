@@ -1,9 +1,9 @@
 import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { NAVIGATION_MENU_LIST } from 'consts';
+import { RouteNames } from 'enums';
 import { useAppDispatch } from 'hooks/use-app-dispatch';
 import { setCurrentCategory } from 'store/categories/categories-slice';
-import { RouteNames } from 'types/enum';
 
 import { NavListItem } from './components/nav-list-item';
 import { BurgerMenuContainer, Container } from './navigation-menu.style';

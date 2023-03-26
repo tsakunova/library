@@ -33,6 +33,7 @@ export const InputLabel = styled.p<{ isError: boolean }>`
   margin-bottom: ${(props) => `${props.theme.size.default}px`};
   font: ${(props) => props.theme.fonts.infoLarge};
   color: ${(props) => (props.isError ? props.theme.color.main.error : props.theme.color.grey.black40)};
+  letter-spacing: 0.2px;
 `;
 
 export const LabelIntroInput = styled.p`

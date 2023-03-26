@@ -85,5 +85,16 @@ export const areEqualDates = (a: Date, b: Date) => {
 export const getDateWithCurrentTimeZone = (selectedDate: Date) => {
   const date = Number(selectedDate) - new Date().getTimezoneOffset() * 60 * 3 * 1000;
 
-  return new Date(date).toISOString();
+  return new Date(date);
+};
+
+export const isClickableDay = (date: Date | null) => {
+  const today = new Date();
+  const isToday = areEqualDates(today, date!);
+  const nextAvailableDay = getNextDayForOrder(today);
+  const isWeekend = date?.getDay() === 6 || date?.getDay() === 0;
+  const isNextDay = areEqualDates(date!, nextAvailableDay);
+  const isClickable = (!isWeekend && isNextDay && !isToday) || (isToday && !isWeekend);
+
+  return isClickable;
 };

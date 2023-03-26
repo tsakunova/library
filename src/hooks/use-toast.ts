@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from 'react';
-import { AppToast, ToastMessages, ToastType, ToastVariant } from 'components/layout/components/toast/toast.enum';
+import { AppToast, ToastMessages, ToastType, ToastVariant } from 'components/toast/toast.enum';
 import { setToast } from 'store/utils/utils-slice';
 
 import { useAppDispatch } from './use-app-dispatch';
@@ -18,13 +18,24 @@ const getBookingToastMessages = (type: ToastType) => {
       };
     case ToastType.edit:
       return {
-        success: ToastMessages.editBookingSuccess,
-        error: ToastMessages.editBookingError,
+        success: ToastMessages.editSuccess,
+        error: ToastMessages.editError,
       };
     case ToastType.rate:
       return {
         success: ToastMessages.addRatingSuccess,
         error: ToastMessages.addRatingError,
+      };
+    case ToastType.editRate:
+      return {
+        success: ToastMessages.editRatingSuccess,
+        error: ToastMessages.editRatingError,
+      };
+
+    case ToastType.photo:
+      return {
+        success: ToastMessages.uploadPhotoSuccess,
+        error: ToastMessages.uploadPhotoError,
       };
     case ToastType.main:
       return {

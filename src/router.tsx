@@ -1,5 +1,6 @@
 import { createHashRouter, RouterProvider } from 'react-router-dom';
 import { Layout } from 'components/layout';
+import { RouteNames } from 'enums';
 import { Auth } from 'pages/auth';
 import { Authorization } from 'pages/auth/components/authorization';
 import { ForgotPassword } from 'pages/auth/components/forgot-password';
@@ -9,7 +10,6 @@ import { Books } from 'pages/books';
 import { Profile } from 'pages/profile';
 import { ContractList } from 'pages/terms-and-contract/contract-list/contract-list';
 import { TermsList } from 'pages/terms-and-contract/terms-list/terms-list';
-import { RouteNames } from 'types/enum';
 
 const routes = createHashRouter([
   {
@@ -25,7 +25,7 @@ const routes = createHashRouter([
         element: <Books />,
       },
       {
-        path: `/${RouteNames.books}/all`,
+        path: `/${RouteNames.books}/${RouteNames.booksAll}`,
         element: <Books />,
       },
       {

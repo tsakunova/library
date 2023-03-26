@@ -2,7 +2,7 @@ import { devices } from 'consts';
 import { Wrapper } from 'index.style';
 import styled from 'styled-components';
 
-export const Container = styled.div<{ isOpenMenu: boolean }>`
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -10,7 +10,6 @@ export const Container = styled.div<{ isOpenMenu: boolean }>`
   height: 100vh;
   display: flex;
   gap: 42px;
-  overflow: ${(props) => (props.isOpenMenu ? 'hidden' : 'auto')};
 
   @media ${devices.tablet} {
     gap: 46px;

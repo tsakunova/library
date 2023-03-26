@@ -2,9 +2,11 @@ import { FC } from 'react';
 import { FieldErrors, FieldValues, UseFormClearErrors, UseFormRegister, UseFormWatch } from 'react-hook-form';
 import { CustomInput } from 'components/forms/custom-input';
 import { InputLabel } from 'components/forms/custom-input/custom-input.style';
+import { UserAPIFields, ValidationErrors } from 'enums';
 import { useIsBlurWithValidation } from 'hooks/use-is-blur-with-validation';
+import { useTypedSelector } from 'hooks/use-typed-selector';
 import { ContainerInputWithLabel, HintErrorSpan } from 'pages/auth/auth.style';
-import { UserAPIFields, ValidationErrors } from 'types/enum';
+import { UserFormType } from 'store/utils/types';
 
 export const InputName: FC<{
   register: UseFormRegister<FieldValues>;
@@ -14,12 +16,19 @@ export const InputName: FC<{
   name: UserAPIFields;
   placeholder: string;
 }> = ({ register, watch, errors, clearErrors, name, placeholder }) => {
-  const { setIsBlur, isEmptyBluredLabel } = useIsBlurWithValidation(name, watch, errors);
+  const { userForm } = useTypedSelector(({ utils }) => utils);
+  const { setIsBlur, isEmptyBluredLabel } = useIsBlurWithValidation(
+    name,
+    userForm?.type !== UserFormType.edit,
+    watch,
+    errors
+  );
+  const isProfile = userForm?.type === UserFormType.edit;
 
   return (
     <ContainerInputWithLabel>
       <CustomInput
-        required={true}
+        required={!isProfile}
         register={register}
         watch={watch}
         errors={errors}
@@ -29,8 +38,11 @@ export const InputName: FC<{
         placeholder={placeholder}
         type='text'
       />
-      <InputLabel data-test-id='hint' isError={isEmptyBluredLabel}>
-        {isEmptyBluredLabel && <HintErrorSpan isError={true}>{ValidationErrors.emptyField}</HintErrorSpan>}
+
+      <InputLabel data-test-id='hint' isError={!isProfile && isEmptyBluredLabel}>
+        {!isProfile && isEmptyBluredLabel && (
+          <HintErrorSpan isError={true}>{ValidationErrors.emptyField}</HintErrorSpan>
+        )}
       </InputLabel>
     </ContainerInputWithLabel>
   );

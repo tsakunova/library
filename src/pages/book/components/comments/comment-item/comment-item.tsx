@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { commentsNoAvatar } from 'assets/images';
+import { userAvatar } from 'assets/images';
 import { AvatarImg } from 'components/avatar-img';
 import { BookRating } from 'components/book-rating';
 import { CommentDTO } from 'types/types';
@@ -21,10 +21,7 @@ export const BookCommentItem: FC<CommentProps> = ({ comment }) => {
   return (
     <CommentContainer data-test-id='comment-wrapper'>
       <ShortInfoContainer>
-        <AvatarImg
-          size='32px'
-          bgImage={comment.user.avatarUrl ? getImageURL(comment.user.avatarUrl) : commentsNoAvatar}
-        />
+        <AvatarImg size={32} bgImage={comment.user.avatarUrl ? getImageURL(comment.user.avatarUrl) : userAvatar} />
         <DateAndName>
           <p data-test-id='comment-author'>
             {comment.user.firstName} {comment.user.lastName}

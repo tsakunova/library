@@ -5,13 +5,13 @@ import { ArrowLeft, ArrowRight } from 'assets/icons';
 import { PrimaryButton } from 'components/buttons/primary-button';
 import { InputLabel } from 'components/forms/custom-input/custom-input.style';
 import { Modal } from 'components/modal';
+import { ButtonType, FormButtonType, RouteNames, TitleVariant, UserAPIFields } from 'enums';
 import { useAppDispatch } from 'hooks/use-app-dispatch';
 import { useTypedSelector } from 'hooks/use-typed-selector';
 import { BlockTitle, FormSection, HasProfile } from 'pages/auth/auth.style';
 import { addNewPasswordRequest, forgotRequest } from 'store/auth/forgor/forgot-actions';
 import { resetPassword } from 'store/auth/forgor/forgot-slice';
 import { ResetPasswordData } from 'types/actions.types';
-import { ButtonType, FormButtonType, RouteNames, TitleVariant, UserAPIFields } from 'types/enum';
 
 import { ModalStatusWithHandler } from '../status-modals';
 
@@ -60,7 +60,7 @@ export const ForgotPassword: FC = () => {
   };
 
   const loginHandler = useCallback(() => {
-    navigate(`/${RouteNames.books}`);
+    navigate(`/${RouteNames.books}/${RouteNames.booksAll}`);
   }, [navigate]);
 
   const resetPasswordErrors = useCallback(() => {

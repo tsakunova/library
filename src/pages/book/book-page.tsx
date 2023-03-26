@@ -1,21 +1,21 @@
-import { FC, SyntheticEvent, useCallback, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { PrimaryButton } from 'components/buttons/primary-button';
 import { ModalType } from 'components/layout/components/modal-in-app/enum';
-import { ToastType, ToastVariant } from 'components/layout/components/toast/toast.enum';
+import { ToastType, ToastVariant } from 'components/toast/toast.enum';
+import { ButtonType, TitleVariant } from 'enums';
 import { useAppDispatch } from 'hooks/use-app-dispatch';
 import { useModal } from 'hooks/use-modal';
 import { useToast } from 'hooks/use-toast';
 import { useTypedSelector } from 'hooks/use-typed-selector';
 import { Wrapper } from 'index.style';
-import { hideBookingToast } from 'store/booking/booking-slice';
-import { hideCommentToast } from 'store/comment/comment-slice';
+import { fetchCategories } from 'store/categories/categories-actions';
 import { fetchCurrentBook } from 'store/current-book/current-book-actions';
 import { resetBook } from 'store/current-book/current-book-slice';
 import { selectBookWithMyRating } from 'store/selectors/book-with-my-rating';
 import { selectBookWithSortedCommentsByDate } from 'store/selectors/current-book-selector';
-import { setModal } from 'store/utils/utils-slice';
-import { ButtonType, TitleVariant } from 'types/enum';
+import { fetchUser } from 'store/user/user-action';
+import { FullBookDTO } from 'types/types';
 
 import { BookAbout } from './components/book-about';
 import { BookRatingSection } from './components/book-rating';
@@ -25,7 +25,7 @@ import { BookContainer, ButtonContainer, InfoSection } from './book-page.style';
 
 export const BookPage: FC = () => {
   const { bookId } = useParams();
-  const { isSuccess, isError: isErrorComment } = useTypedSelector((state) => state.comment);
+  const { isSuccess, isError: isErrorComment, toastType: toastTypeRate } = useTypedSelector((state) => state.comment);
   const {
     isSuccess: isSuccessBooking,
     isError: isErrorBooking,
@@ -34,28 +34,25 @@ export const BookPage: FC = () => {
   const dispatch = useAppDispatch();
   const { isLoading, isError } = useTypedSelector((state) => state.currentBook);
   const currentBook = useTypedSelector(selectBookWithSortedCommentsByDate);
-  const withMyComment = useTypedSelector(selectBookWithMyRating);
+  const myComment = useTypedSelector(selectBookWithMyRating);
 
-  useToast(ToastVariant.positive, isSuccess, ToastType.rate);
-  useToast(ToastVariant.negative, isErrorComment, ToastType.rate);
+  const titleForRateButton = myComment ? TitleVariant.editYourRating : TitleVariant.addRating;
+
+  useToast(ToastVariant.positive, isSuccess, toastTypeRate!);
+  useToast(ToastVariant.negative, isErrorComment, toastTypeRate!);
   useToast(ToastVariant.positive, isSuccessBooking, toastType!);
   useToast(ToastVariant.negative, isErrorBooking, toastType!);
   useToast(ToastVariant.negative, isError, ToastType.main);
 
-  const { isShow, setIsShow } = useModal(ModalType.rating);
-
-  const { showModalForBooking } = useModal(ModalType.booking, currentBook);
-
-  const showModalForRate = useCallback(
-    (e: SyntheticEvent) => {
-      setIsShow(true);
-      dispatch(setModal({ isShow, modalType: ModalType.rating }));
-    },
-    [dispatch, isShow, setIsShow]
-  );
+  const { showModal: showModalForBooking } = useModal(ModalType.booking, currentBook as FullBookDTO);
+  const { showModal: showModalForRate } = useModal(ModalType.rating, bookId);
 
   useEffect(() => {
-    if (bookId) dispatch(fetchCurrentBook(bookId));
+    if (bookId) {
+      dispatch(fetchCurrentBook(bookId));
+      dispatch(fetchUser());
+      dispatch(fetchCategories());
+    }
   }, [bookId, dispatch]);
 
   useEffect(() => {
@@ -63,10 +60,8 @@ export const BookPage: FC = () => {
   }, [bookId, dispatch, isSuccess, isSuccessBooking]);
 
   useEffect(
-    (): (() => void) => () => {
+    () => () => {
       dispatch(resetBook());
-      dispatch(hideCommentToast());
-      dispatch(hideBookingToast());
     },
     [dispatch]
   );
@@ -86,9 +81,8 @@ export const BookPage: FC = () => {
           <PrimaryButton
             onClick={showModalForRate}
             testId='button-rate-book'
-            disabled={withMyComment}
-            type={ButtonType.primaryButton}
-            title={TitleVariant.addRating}
+            type={myComment ? ButtonType.secondaryButton : ButtonType.primaryButton}
+            title={titleForRateButton}
             stylesClass='buttonOnBookPage'
           />
         </ButtonContainer>

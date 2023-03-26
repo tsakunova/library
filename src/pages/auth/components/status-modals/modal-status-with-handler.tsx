@@ -1,8 +1,8 @@
 import { FC, SyntheticEvent } from 'react';
 import { PrimaryButton } from 'components/buttons/primary-button';
 import { Modal } from 'components/modal';
+import { ButtonType, FormButtonType } from 'enums';
 import { BlockMessage, BlockTitle } from 'pages/auth/auth.style';
-import { ButtonType, FormButtonType } from 'types/enum';
 
 import { Container } from './status.style';
 

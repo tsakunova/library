@@ -7,8 +7,22 @@ export enum FormButtonType {
   submit = 'submit',
 }
 
+export enum CardType {
+  main = 'main',
+  booking = 'booking',
+  delivery = 'delivery',
+  history = 'history',
+}
+
+export enum EmptyTitles {
+  booking = 'Забронируйте книгу и она отобразится',
+  taken = 'Прочитав книгу, она отобразится в истории',
+  history = 'Вы не читали книг из нашей библиотеки',
+}
+
 export enum UserAPIFields {
   email = 'email',
+  login = 'login',
   username = 'username',
   password = 'password',
   repeatPassword = 'passwordConfirmation',
@@ -21,6 +35,8 @@ export enum UserAPIFields {
 
 export enum TitleVariant {
   profile = 'Профиль',
+  library = 'Библиотека',
+  profilePage = 'Личный кабинет',
   exit = 'Выход',
   loginAfterRegistration = 'вход',
   repeat = 'повторить',
@@ -60,12 +76,16 @@ export enum TitleVariant {
   addRatingTitle = 'Оцените книгу',
   addRatingButton = 'Оценить',
   yourRating = 'Ваша оценка',
+  editYourRating = 'изменить оценку',
   ratingTextareaPlaceholder = 'Оставить отзыв',
   emptyCategory = 'В этой категории книг ещё нет',
   emptySearch = 'По запросу ничего не найдено',
   calendarTitle = 'Выбор даты бронирования',
   calendarTitleEdit = 'Изменение даты бронирования',
   endBooking = 'отменить бронь',
+  edit = 'Редактировать',
+  cancel = 'отменить',
+  save = 'Сохранить изменения',
 }
 
 export enum ViewVariant {
@@ -142,15 +162,4 @@ export enum BookCategory {
   handbook = 'Справочники',
   fantasy = 'Фантастика',
   humor = 'Юмор',
-}
-
-export enum ValidationErrors {
-  emptyField = 'Поле не может быть пустым',
-  passRepeat = 'Пароли не совпадают',
-  latin = 'латинский алфавит',
-  number = 'цифры',
-  length = 'не менее 8 символов',
-  upperCase = 'с заглавной буквой',
-  passNumber = 'цифрой',
-  email = 'Введите корректный e-mail',
 }

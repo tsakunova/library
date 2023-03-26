@@ -1,4 +1,4 @@
-import { UserAPIFields } from 'types/enum';
+import { UserAPIFields } from 'enums';
 
 export const REGISTRATION_STEPS_COUNT = 3;
 

@@ -1,13 +1,14 @@
 import { FC, useCallback, useEffect, useState } from 'react';
-import { ToastType, ToastVariant } from 'components/layout/components/toast/toast.enum';
+import { ToastType, ToastVariant } from 'components/toast/toast.enum';
+import { ViewVariant } from 'enums';
 import { useAppDispatch } from 'hooks/use-app-dispatch';
 import { useToast } from 'hooks/use-toast';
 import { useTypedSelector } from 'hooks/use-typed-selector';
 import { fetchBooks } from 'store/books/books-actions';
-import { resetBooks } from 'store/books/books-slice';
+import { fetchCategories } from 'store/categories/categories-actions';
 import { selectBooksWithSearchFilter } from 'store/selectors/books-with-search-filter';
+import { fetchUser } from 'store/user/user-action';
 import { setSearchString } from 'store/utils/utils-slice';
-import { ViewVariant } from 'types/enum';
 
 import { BookList } from './components/books-list';
 import { EmptyBlock } from './components/empty-block';
@@ -32,7 +33,9 @@ export const Books: FC = () => {
   const [activeView, setActiveView] = useState<ViewVariant>(ViewVariant.window);
 
   useEffect(() => {
+    dispatch(fetchCategories());
     dispatch(fetchBooks());
+    dispatch(fetchUser());
   }, [dispatch]);
 
   useEffect(() => {
@@ -42,7 +45,6 @@ export const Books: FC = () => {
   useEffect(
     () => () => {
       dispatch(setSearchString(''));
-      dispatch(resetBooks());
     },
     [dispatch]
   );
@@ -52,7 +54,7 @@ export const Books: FC = () => {
   }, []);
 
   return (
-    <Container>
+    <Container data-test-id='main-page'>
       <HomeContainer>
         <FilterList onViewClick={activeViewHandler} typeView={activeView} />
         {booksList.length ? (

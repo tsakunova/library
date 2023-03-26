@@ -1,8 +1,11 @@
 export type AddCommentType = {
-  rating: number;
-  text: string;
-  book: string;
-  user: string;
+  commentId?: number;
+  data: {
+    rating: number;
+    text: string;
+    book: string;
+    user: string;
+  };
 };
 
 export type BookingType = {
@@ -26,4 +29,16 @@ export type RegistrationUserData = {
   firstName: string;
   lastName: string;
   phone: string;
+};
+
+export type UpdateUserData = {
+  id?: number;
+  data: {
+    username: string;
+    email: string;
+    password: string;
+    firstName?: string;
+    lastName?: string;
+    phone?: string;
+  };
 };

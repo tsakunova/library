@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { Loader } from 'components/layout/components/loader';
+import { RouteNames, TitleVariant } from 'enums';
 import { useTypedSelector } from 'hooks/use-typed-selector';
-import { RouteNames, TitleVariant } from 'types/enum';
 
 import { Container, Title } from './auth.style';
 

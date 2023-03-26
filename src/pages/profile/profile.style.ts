@@ -7,9 +7,9 @@ export const Container = styled(Wrapper)`
   flex-direction: column;
   gap: 92px;
   @media ${devices.tablet} {
-    margin: 8px 0 13px;
+    gap: 64px;
   }
   @media ${devices.mobile} {
-    margin: 3px 0 60px;
+    gap: 42px;
   }
 `;

@@ -1,9 +1,9 @@
 import React, { FC, useState } from 'react';
 import { CloseSVG, SearchSVG } from 'assets/icons';
 import { CircleButton } from 'components/buttons/circle-button';
+import { TitleVariant, ViewVariant } from 'enums';
 import { useAppDispatch } from 'hooks/use-app-dispatch';
 import { setSearchString } from 'store/utils/utils-slice';
-import { TitleVariant, ViewVariant } from 'types/enum';
 
 import { CloseButton, SearchInputContainer, VisibleMobile } from './search-input.style';
 
@@ -14,7 +14,7 @@ type SearchInputProps = {
 
 export const SearchInput: FC<SearchInputProps> = ({ isOpen, setIsOpen }) => {
   const [currentValue, setCurrentValue] = useState('');
-  const [blur, setBlur] = useState(true);
+  const [blur, setBlur] = useState(false);
   const dispatch = useAppDispatch();
 
   const changeText = (event: React.ChangeEvent<HTMLInputElement>) => {

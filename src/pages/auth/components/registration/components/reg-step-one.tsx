@@ -10,8 +10,9 @@ export const RegStepOne: FC<{
   watch: UseFormWatch<FieldValues>;
   errors: FieldErrors<FieldValues>;
   clearErrors: UseFormClearErrors<FieldValues>;
-}> = ({ errors, watch, register, clearErrors }) => (
-  <FormSection>
+  inProfile?: boolean;
+}> = ({ errors, watch, register, clearErrors, inProfile = false }) => (
+  <FormSection inProfile={inProfile}>
     <InputUsername register={register} watch={watch} errors={errors} clearErrors={clearErrors} />
     <InputPassword register={register} watch={watch} errors={errors} clearErrors={clearErrors} />
   </FormSection>

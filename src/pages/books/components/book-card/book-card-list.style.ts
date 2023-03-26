@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { BookImage, Container } from './book.card.style';
 
 export const ListViewCard = styled(Container)`
+  position: relative;
   max-height: 218px;
   width: 100%;
   padding: 24px 24px 24px 16px;

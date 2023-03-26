@@ -1,7 +1,9 @@
-import { FC, useEffect } from 'react';
+import { FC, useCallback, useEffect } from 'react';
 import { CloseSVG } from 'assets/icons';
 import { useAppDispatch } from 'hooks/use-app-dispatch';
 import { useTypedSelector } from 'hooks/use-typed-selector';
+import { resetBooking } from 'store/booking/booking-slice';
+import { hideCommentToast } from 'store/comment/comment-slice';
 import { hideToast } from 'store/utils/utils-slice';
 
 import { CloseButton, Container, ToastInfo } from './toast.style';
@@ -12,15 +14,15 @@ export const Toast: FC = () => {
   const dispatch = useAppDispatch();
   const { icon: Icon, styledComponent: Component } = getToastStyles(toast?.toastVariant);
 
-  useEffect(() => {
-    setTimeout(() => {
-      dispatch(hideToast());
-    }, 3000);
+  const onClose = useCallback(() => {
+    dispatch(hideToast());
+    dispatch(resetBooking());
+    dispatch(hideCommentToast());
   }, [dispatch]);
 
-  const closeToast = () => {
-    dispatch(hideToast());
-  };
+  useEffect(() => {
+    setTimeout(() => onClose(), 3000);
+  }, [dispatch, onClose]);
 
   return (
     <Container isActive={!!toast}>
@@ -29,7 +31,7 @@ export const Toast: FC = () => {
           <Icon />
           <p>{toast?.toastMessage}</p>
         </ToastInfo>
-        <CloseButton data-test-id='alert-close' onClick={closeToast}>
+        <CloseButton data-test-id='alert-close' onClick={onClose}>
           <CloseSVG />
         </CloseButton>
       </Component>

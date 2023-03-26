@@ -7,5 +7,5 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  gap: 32px;
+  gap: ${(props) => `${props.theme.size.default * 2}px`};
 `;

@@ -1,7 +1,7 @@
 import React, { FC, useCallback } from 'react';
 import { devices } from 'consts';
+import { ViewVariant } from 'enums';
 import styled from 'styled-components';
-import { ViewVariant } from 'types/enum';
 
 type Props = {
   type: ViewVariant;

@@ -11,7 +11,7 @@ import {
   SelectMonth,
   WeekDayNames,
 } from './calendar.style';
-import { areEqualDates, getMonthDataWithPrevAndNext, getNextDayForOrder } from './calendar.utils';
+import { areEqualDates, getMonthDataWithPrevAndNext, getNextDayForOrder, isClickableDay } from './calendar.utils';
 import { DAYS, MONTH_NAMES_RU, MONTHS_IN_YEAR } from './const';
 
 type CalendarProps = {
@@ -21,33 +21,28 @@ type CalendarProps = {
 
 export const Calendar: FC<CalendarProps> = ({ selectDate, selectedDate }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
-  const nextAvailableDay = getNextDayForOrder(currentDate);
+  const today = new Date();
+  const nextAvailableDay = getNextDayForOrder(today);
 
   const monthSelectRef = useRef<HTMLSelectElement>(null);
 
   const monthData = getMonthDataWithPrevAndNext(Number(currentDate.getFullYear()), Number(currentDate.getMonth()));
 
   const onDayCalendarClick = (date: Date | null) => {
-    if (
-      (date?.getDay() === 6 || date?.getDay() === 0) &&
-      areEqualDates(date, currentDate) &&
-      areEqualDates(currentDate, new Date())
-    ) {
-      selectDate(null);
+    const isClickable = isClickableDay(date);
 
-      return;
-    }
-
-    if (areEqualDates(date!, currentDate) || areEqualDates(date!, nextAvailableDay)) {
+    if (isClickable) {
       selectDate(date);
     }
   };
 
   const onPrevMonthClick = () => {
+    selectDate(null);
     setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, currentDate.getDate()));
   };
 
   const onNextMonthClick = () => {
+    selectDate(null);
     setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, currentDate.getDate()));
   };
 
@@ -87,8 +82,8 @@ export const Calendar: FC<CalendarProps> = ({ selectDate, selectedDate }) => {
         {monthData.map((week) =>
           week.map((date) => (
             <Day
-              isCurrent={areEqualDates(date!, currentDate) && areEqualDates(new Date(), currentDate)}
-              isNext={areEqualDates(date!, nextAvailableDay) && currentDate.getMonth() === new Date().getMonth()}
+              isCurrent={areEqualDates(date!, currentDate) && areEqualDates(today, currentDate)}
+              isNext={areEqualDates(date!, nextAvailableDay)}
               isActive={areEqualDates(date!, selectedDate!)}
               isWeekend={date?.getDay() === 6 || date?.getDay() === 0}
               isWeekendNotActive={

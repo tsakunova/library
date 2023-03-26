@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from 'react-router-dom';
+import { RouteNames } from 'enums';
 import { useTypedSelector } from 'hooks/use-typed-selector';
-import { RouteNames } from 'types/enum';
 
 export const PrivateRouter = () => {
   const user = useTypedSelector(({ login }) => login.user);

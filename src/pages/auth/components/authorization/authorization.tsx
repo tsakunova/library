@@ -6,6 +6,7 @@ import { PrimaryButton } from 'components/buttons/primary-button';
 import { CustomInput } from 'components/forms/custom-input';
 import { InputLabel } from 'components/forms/custom-input/custom-input.style';
 import { Modal } from 'components/modal';
+import { ButtonType, FormButtonType, RouteNames, TitleVariant, UserAPIFields, ValidationErrors } from 'enums';
 import { useAppDispatch } from 'hooks/use-app-dispatch';
 import { useIsBlurWithValidation } from 'hooks/use-is-blur-with-validation';
 import { useTypedSelector } from 'hooks/use-typed-selector';
@@ -13,7 +14,6 @@ import { BlockTitle, ContainerInputWithLabel, FormSection, HasProfile, HintError
 import { FORM_INPUT_TEXT } from 'pages/auth/const';
 import { loginRequest } from 'store/auth/login/login-actions';
 import { logout } from 'store/auth/login/login-slice';
-import { ButtonType, FormButtonType, RouteNames, TitleVariant, UserAPIFields, ValidationErrors } from 'types/enum';
 import { UserAPI } from 'types/types';
 
 import { ModalStatusWithHandler } from '../status-modals';
@@ -39,12 +39,14 @@ export const Authorization: FC = () => {
 
   const { setIsBlur: setIsBlurName, isEmptyBluredLabel: isErrorNameLabel } = useIsBlurWithValidation(
     UserAPIFields.identifier,
+    true,
     watch,
     errors
   );
 
   const { setIsBlur: setIsBlurPass, isEmptyBluredLabel: isErrorPassLabel } = useIsBlurWithValidation(
     UserAPIFields.password,
+    true,
     watch,
     errors
   );
@@ -53,7 +55,7 @@ export const Authorization: FC = () => {
     if (isValid) {
       await dispatch(loginRequest(data as UserAPI));
       reset();
-      navigate(`/${RouteNames.books}`);
+      navigate(`/${RouteNames.books}/${RouteNames.booksAll}`);
     }
   };
   const redirectToAuth = useCallback(() => {

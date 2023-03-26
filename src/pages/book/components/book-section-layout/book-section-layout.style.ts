@@ -16,9 +16,6 @@ export const TitleBookSection = styled.h5<{ isPadding: boolean }>`
     margin-left: 6px;
     font: ${(props) => props.theme.fonts.span};
     color: ${(props) => props.theme.color.grey.black40};
-    @media ${devices.tablet} {
-      display: none;
-    }
   }
   & svg {
     margin: 0 24px;

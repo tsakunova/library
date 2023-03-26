@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { NavLink } from 'react-router-dom';
-import { RouteNames } from 'types/enum';
+import { RouteNames } from 'enums';
 import { CategoriesDTO } from 'types/types';
 
 import { BookListItemLi } from './books-theme-list-item.style';

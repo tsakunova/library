@@ -9,6 +9,8 @@ export const theme = {
       hover: 'FF740F',
       search: 'rgb(248, 54, 0)',
       error: 'rgb(244, 44, 79)',
+      empty: '#6E76F1',
+      alertBg: 'rgba(255, 82, 83, 0.7)',
     },
     toast: {
       negative: '#FEEBEA',
@@ -39,6 +41,7 @@ export const theme = {
   fonts: {
     h1: '500 52px/64px Montserrat',
     h2: '500 44px/54px Montserrat',
+    mobileH2: '500 26px/36px Montserrat',
     h3: '700 32px/40px Montserrat',
     mobileH3: '700 18px/28px Montserrat',
     selectedTheme: '700 16px/24px Montserrat',
@@ -66,7 +69,7 @@ export const theme = {
     button: {
       padding: '12px 0',
       paddingS: '10px 16px',
-      borderRadius: '20px',
+      borderRadius: '30px',
       icon: '38px',
     },
   },

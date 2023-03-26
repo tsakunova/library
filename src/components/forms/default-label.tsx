@@ -1,6 +1,6 @@
 import { FC } from 'react';
+import { ValidationErrors } from 'enums';
 import { HintErrorSpan } from 'pages/auth/auth.style';
-import { ValidationErrors } from 'types/enum';
 
 export const DefaultLabel: FC<{ isEmptyBluredLabel: boolean; label: string }> = ({ isEmptyBluredLabel, label }) =>
   isEmptyBluredLabel ? (

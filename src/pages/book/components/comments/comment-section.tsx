@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { BookSectionTitle } from 'types/enum';
+import { BookSectionTitle } from 'enums';
 import { CommentDTO } from 'types/types';
 
 import { BookSectionLayout } from '../book-section-layout';

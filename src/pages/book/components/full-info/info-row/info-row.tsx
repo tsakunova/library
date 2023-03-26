@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { BookInfoTitles } from 'types/enum';
+import { BookInfoTitles } from 'enums';
 import { addComma } from 'utils/add-comma';
 import { keyExtractor } from 'utils/key-extractor';
 

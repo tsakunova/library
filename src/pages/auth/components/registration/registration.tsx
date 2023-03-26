@@ -3,6 +3,7 @@ import { FieldValues, useForm } from 'react-hook-form';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { PrimaryButton } from 'components/buttons/primary-button';
 import { Modal } from 'components/modal';
+import { ButtonType, FormButtonType, RouteNames, TitleVariant } from 'enums';
 import { useAppDispatch } from 'hooks/use-app-dispatch';
 import { useTypedSelector } from 'hooks/use-typed-selector';
 import { BlockSubtitle, BlockTitle, HasProfile } from 'pages/auth/auth.style';
@@ -10,7 +11,6 @@ import { REGISTRATION_STEPS_COUNT } from 'pages/auth/const';
 import { registrationRequest } from 'store/auth/registration/registration-actions';
 import { resetRegistration } from 'store/auth/registration/registration-slice';
 import { RegistrationUserData } from 'types/actions.types';
-import { ButtonType, FormButtonType, RouteNames, TitleVariant } from 'types/enum';
 
 import { ModalStatusWithHandler } from '../status-modals';
 
@@ -83,7 +83,7 @@ export const Registration: FC = () => {
   }, [currentStep, isValid]);
 
   const loginHandler = useCallback(() => {
-    navigate(`/${RouteNames.books}`);
+    navigate(`/${RouteNames.books}/${RouteNames.booksAll}`);
   }, [navigate]);
 
   const stepProps = { register, errors, watch, control, clearErrors };

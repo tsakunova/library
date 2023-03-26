@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { BookRating } from 'components/book-rating';
-import { BookSectionTitle, TitleVariant } from 'types/enum';
+import { BookSectionTitle, TitleVariant } from 'enums';
 
 import { BookSectionLayout } from '../book-section-layout';
 

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { devices } from 'consts';
+import { TitleVariant } from 'enums';
 import styled from 'styled-components';
-import { TitleVariant } from 'types/enum';
 
 type Props = {
   title: TitleVariant;

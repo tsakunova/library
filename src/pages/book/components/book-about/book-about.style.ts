@@ -88,15 +88,11 @@ export const ButtonContainer = styled.div`
   .buttonOnBookPage {
     padding: 14px 0;
     border-radius: 30px;
+    font: ${(props) => props.theme.fonts.buttonLarge};
     @media ${devices.mobile} {
+      font: ${(props) => props.theme.fonts.buttonSmall};
       padding: 11px 0;
       border-radius: 20px;
-    }
-    p {
-      font: ${(props) => props.theme.fonts.subtitleLarge};
-      @media ${devices.mobile} {
-        font: ${(props) => props.theme.fonts.buttonSmall};
-      }
     }
   }
   @media ${devices.tablet} {

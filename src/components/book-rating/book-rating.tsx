@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { EmptyStar } from 'assets/icons';
+import { TitleVariant } from 'enums';
 import { theme } from 'style/theme';
-import { TitleVariant } from 'types/enum';
 import { keyExtractor } from 'utils/key-extractor';
 
 import { Container } from './book-rating.style';

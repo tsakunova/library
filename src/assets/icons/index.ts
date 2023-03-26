@@ -13,6 +13,7 @@ export { ReactComponent as EyeClosed } from './eyeClosed.svg';
 export { ReactComponent as UpSVG } from './up.svg';
 export { ReactComponent as DownSVG } from './down.svg';
 export { ReactComponent as SearchSVG } from './search.svg';
+
 export { ReactComponent as CloseSVG } from './close.svg';
 export { ReactComponent as SortAscendingSVG } from './sort-ascending.svg';
 export { ReactComponent as SortDescendingSVG } from './sort-descending.svg';
@@ -23,3 +24,4 @@ export { ReactComponent as ToastPositiveSVG } from './toast-positive.svg';
 export { ReactComponent as ToastNegativeSVG } from './toast-negative.svg';
 export { default as cleverland } from './cleverland.svg';
 export { default as arrowDropDown } from './arrow-drop-down.svg';
+export { default as uploadPhotoSVG } from './upload-photo.svg';

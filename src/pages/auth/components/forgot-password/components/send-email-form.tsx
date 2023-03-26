@@ -3,10 +3,10 @@ import { FieldErrors, FieldValues, UseFormClearErrors, UseFormRegister, UseFormW
 import { CustomInput } from 'components/forms/custom-input';
 import { InputLabel } from 'components/forms/custom-input/custom-input.style';
 import { DefaultLabel } from 'components/forms/default-label';
+import { UserAPIFields, ValidationErrors } from 'enums';
 import { useIsBlurWithValidation } from 'hooks/use-is-blur-with-validation';
 import { ContainerInputWithLabel, HintErrorSpan } from 'pages/auth/auth.style';
 import { FORM_INPUT_TEXT, registerStepThreeValidation } from 'pages/auth/const';
-import { UserAPIFields, ValidationErrors } from 'types/enum';
 
 type Props = {
   register: UseFormRegister<FieldValues>;
@@ -17,6 +17,7 @@ type Props = {
 export const SendEmailForm: FC<Props> = ({ register, watch, errors, clearErrors }) => {
   const { isBlur, setIsBlur, isEmptyBluredLabel, watchField } = useIsBlurWithValidation(
     UserAPIFields.email,
+    true,
     watch,
     errors
   );

@@ -2,23 +2,28 @@ import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { LogoClevertec } from 'assets/icons';
 import { NavigationMenu } from 'components/navigation-menu';
+import { TitleVariant } from 'enums';
+import { useTypedSelector } from 'hooks/use-typed-selector';
 import { Wrapper } from 'index.style';
-import { UserAPI } from 'types/types';
+import { UserFormType } from 'store/utils/types';
 
 import { BurgerMenu } from './components/ burger-menu';
 import { HeaderAuthorization } from './components/header-authorisation';
 import { HeaderContainer, LeftHeaderContainer, LogoContainer, MenuContainer, Title } from './header.style';
 
 type HeaderProps = {
-  user: UserAPI | null;
   isOpenBurger: boolean;
   setIsOpenBurger: (value: boolean) => void;
   isOpenUserMenu: boolean;
   setIsOpenUserMenu: (value: boolean) => void;
 };
 
-export const Header: FC<HeaderProps> = ({ user, isOpenBurger, setIsOpenBurger, isOpenUserMenu, setIsOpenUserMenu }) => {
-  if (!user) return null;
+export const Header: FC<HeaderProps> = ({ isOpenBurger, setIsOpenBurger, isOpenUserMenu, setIsOpenUserMenu }) => {
+  const { user } = useTypedSelector(({ user }) => user);
+  const { userForm } = useTypedSelector(({ utils }) => utils);
+  const isProfile = userForm?.type === UserFormType.edit;
+  const title = isProfile ? TitleVariant.profilePage : TitleVariant.library;
+
   const burgerOpenHandler = () => {
     setIsOpenBurger(!isOpenBurger);
   };
@@ -42,7 +47,7 @@ export const Header: FC<HeaderProps> = ({ user, isOpenBurger, setIsOpenBurger, i
             />
           </MenuContainer>
 
-          <Title>Библиотека</Title>
+          <Title>{title}</Title>
         </LeftHeaderContainer>
         <HeaderAuthorization isOpen={isOpenUserMenu} setIsOpen={setIsOpenUserMenu} user={user} />
       </HeaderContainer>

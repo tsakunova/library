@@ -3,6 +3,7 @@ import { RootState } from 'store';
 
 const selectCategoriesLoading = (state: RootState) => state.categories.isLoading;
 const selectBooksLoading = (state: RootState) => state.books.isLoading;
+const selectMeLoading = (state: RootState) => state.user.isLoading;
 const selectCurrentBookLoading = (state: RootState) => state.currentBook.isLoading;
 const selectLoginLoading = (state: RootState) => state.login.isLoading;
 const selectRegistrationLoading = (state: RootState) => state.registration.isLoading;
@@ -13,12 +14,13 @@ export const selectLoading = createSelector(
   [
     selectCategoriesLoading,
     selectBooksLoading,
+    selectMeLoading,
     selectCurrentBookLoading,
     selectLoginLoading,
     selectRegistrationLoading,
     selectCommentLoading,
     selectBookingLoading,
   ],
-  (categories, books, currentBook, login, registration, comment, booking) =>
-    categories || books || currentBook || login || registration || comment || booking
+  (categories, books, me, currentBook, login, registration, comment, booking) =>
+    categories || books || me || currentBook || login || registration || comment || booking
 );

@@ -4,5 +4,11 @@ import { AddCommentType } from 'types/actions.types';
 
 export const addCommentForCurrentBook = createAsyncThunk(
   ApiPath.comments,
-  async (data: AddCommentType) => (await axiosInstance.post(ApiPath.comments, { data: { ...data } })).data
+  async (value: AddCommentType) => (await axiosInstance.post(ApiPath.comments, { data: { ...value.data } })).data
+);
+
+export const editCommentForCurrentBook = createAsyncThunk(
+  `${ApiPath.comments}/edit`,
+  async (value: AddCommentType) =>
+    (await axiosInstance.put(`${ApiPath.comments}/${value.commentId}`, { data: { ...value.data } })).data
 );

@@ -46,7 +46,7 @@ export const ImageContainer = styled.div`
   }
   & .images-slider-thumbs {
     height: 86px;
-    margin-top: 16px;
+    margin-top: ${(props) => `${props.theme.size.default}px`};
     .swiper-slide {
       width: 19% !important;
       cursor: pointer;

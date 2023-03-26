@@ -1,4 +1,4 @@
-import { ToastType } from 'components/layout/components/toast/toast.enum';
+import { ToastType } from 'components/toast/toast.enum';
 
 export type BookingState = {
   isLoading: boolean;

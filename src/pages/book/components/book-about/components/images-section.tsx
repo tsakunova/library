@@ -57,7 +57,7 @@ export const ImagesSection: FC<{ images: ImagesType[] }> = ({ images }) => {
     <BookSlider images={images} />
   ) : (
     <ImageContainer>
-      <img alt='bookImage' src={getImageURL(images[0].url)} />
+      <img alt='bookImage' src={getImageURL(images[0].url!)} />
     </ImageContainer>
   );
 };

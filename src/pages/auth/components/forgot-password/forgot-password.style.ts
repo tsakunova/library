@@ -18,7 +18,7 @@ export const BlockTitleWithBG = styled.div`
   display: flex;
   align-items: center;
   padding: 20px 0px 20px 16px;
-  gap: 16px;
+  gap: ${(props) => `${props.theme.size.default}px`};
   font: ${(props) => props.theme.fonts.buttonSmall};
   color: ${(props) => props.theme.color.grey.black70};
   text-transform: uppercase;

@@ -2,10 +2,10 @@ import { FC, Fragment, useCallback } from 'react';
 import { FieldErrors, FieldValues, UseFormClearErrors, UseFormRegister, UseFormWatch } from 'react-hook-form';
 import { CustomInput } from 'components/forms/custom-input';
 import { InputLabel } from 'components/forms/custom-input/custom-input.style';
+import { UserAPIFields, ValidationErrors } from 'enums';
 import { useIsBlurWithValidation } from 'hooks/use-is-blur-with-validation';
 import { ContainerInputWithLabel, HintErrorSpan } from 'pages/auth/auth.style';
 import { FORM_INPUT_TEXT } from 'pages/auth/const';
-import { UserAPIFields, ValidationErrors } from 'types/enum';
 
 import { InputPassword } from '../../registration/components/step-one/input-password';
 
@@ -20,6 +20,7 @@ type Props = {
 export const ResetPasswordForm: FC<Props> = ({ register, watch, errors, clearErrors, isValidPass, onBlur }) => {
   const { isBlur, setIsBlur, isEmptyBluredLabel } = useIsBlurWithValidation(
     UserAPIFields.repeatPassword,
+    true,
     watch,
     errors
   );

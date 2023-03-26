@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { BookCategory } from 'types/enum';
+import { BookCategory } from 'enums';
 
 import { fetchCategories } from './categories-actions';
 import { CategoriesState } from './types';

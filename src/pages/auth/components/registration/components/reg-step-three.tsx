@@ -3,10 +3,12 @@ import { Control, FieldErrors, FieldValues, UseFormClearErrors, UseFormRegister,
 import { CustomInput } from 'components/forms/custom-input';
 import { InputLabel } from 'components/forms/custom-input/custom-input.style';
 import { CustomMaskedInput } from 'components/forms/custom-masked-input/custom-masked-input';
+import { UserAPIFields, ValidationErrors } from 'enums';
 import { useIsBlurWithValidation } from 'hooks/use-is-blur-with-validation';
+import { useTypedSelector } from 'hooks/use-typed-selector';
 import { ContainerInputWithLabel, FormSection, HintErrorSpan } from 'pages/auth/auth.style';
 import { FORM_INPUT_TEXT, registerStepThreeValidation } from 'pages/auth/const';
-import { UserAPIFields, ValidationErrors } from 'types/enum';
+import { UserFormType } from 'store/utils/types';
 
 export const RegStepThree: FC<{
   register: UseFormRegister<FieldValues>;
@@ -14,15 +16,20 @@ export const RegStepThree: FC<{
   errors: FieldErrors<FieldValues>;
   control: Control<FieldValues, any>;
   clearErrors: UseFormClearErrors<FieldValues>;
-}> = ({ register, watch, errors, control, clearErrors }) => {
+  inProfile?: boolean;
+}> = ({ errors, watch, register, clearErrors, control, inProfile = false }) => {
   const { isBlur, setIsBlur, isEmptyBluredLabel, watchField } = useIsBlurWithValidation(
     UserAPIFields.email,
+    true,
     watch,
     errors
   );
+  const { userForm } = useTypedSelector(({ utils }) => utils);
+  const isProfile = userForm?.type === UserFormType.edit;
+  const isShowLabel = !userForm || (isProfile && userForm?.isDisabled);
 
   return (
-    <FormSection>
+    <FormSection inProfile={inProfile}>
       <CustomMaskedInput watch={watch} errors={errors} control={control} />
       <ContainerInputWithLabel>
         <CustomInput
@@ -37,21 +44,23 @@ export const RegStepThree: FC<{
           clearErrors={clearErrors}
           type='email'
         />
-        <InputLabel data-test-id='hint' isError={isEmptyBluredLabel}>
-          {errors[UserAPIFields.email]?.type === 'isValidEmail' ? (
-            <HintErrorSpan
-              isError={
-                (isBlur && !!errors[UserAPIFields.email]) ||
-                errors[UserAPIFields.email]?.type === 'isValidEmail' ||
-                !registerStepThreeValidation.email.isValidEmail(watchField)
-              }
-            >
-              {ValidationErrors.email}
-            </HintErrorSpan>
-          ) : (
-            isEmptyBluredLabel && <HintErrorSpan isError={true}>{ValidationErrors.emptyField}</HintErrorSpan>
-          )}
-        </InputLabel>
+        {isShowLabel && (
+          <InputLabel data-test-id='hint' isError={isEmptyBluredLabel}>
+            {errors[UserAPIFields.email]?.type === 'isValidEmail' ? (
+              <HintErrorSpan
+                isError={
+                  (isBlur && !!errors[UserAPIFields.email]) ||
+                  errors[UserAPIFields.email]?.type === 'isValidEmail' ||
+                  !registerStepThreeValidation.email.isValidEmail(watchField)
+                }
+              >
+                {ValidationErrors.email}
+              </HintErrorSpan>
+            ) : (
+              isEmptyBluredLabel && <HintErrorSpan isError={true}>{ValidationErrors.emptyField}</HintErrorSpan>
+            )}
+          </InputLabel>
+        )}
       </ContainerInputWithLabel>
     </FormSection>
   );

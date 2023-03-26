@@ -1,4 +1,4 @@
-import { BookCategory } from 'types/enum';
+import { BookCategory } from 'enums';
 import { CategoriesDTO } from 'types/types';
 
 export type CategoriesState = {

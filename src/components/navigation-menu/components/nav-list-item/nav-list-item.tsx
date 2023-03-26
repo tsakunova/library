@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { DownSVG, UpSVG } from 'assets/icons';
+import { RouteNames, TestIdType } from 'enums';
 import { useAppDispatch } from 'hooks/use-app-dispatch';
 import { logout } from 'store/auth/login/login-slice';
-import { RouteNames, TestIdType } from 'types/enum';
 import { NavMenuType } from 'types/types';
 
 import { BooksThemeList } from '../books-theme-list';

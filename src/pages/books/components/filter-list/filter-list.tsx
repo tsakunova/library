@@ -3,11 +3,11 @@ import { MenuSVG, SortAscendingSVG, SortDescendingSVG, SquareFourSVG } from 'ass
 import { CircleButton } from 'components/buttons/circle-button';
 import { WithIconButton } from 'components/buttons/with-icon-button';
 import { SearchInput } from 'components/forms/search-input/search-input';
+import { TitleVariant, ViewVariant } from 'enums';
 import { useAppDispatch } from 'hooks/use-app-dispatch';
 import { useTypedSelector } from 'hooks/use-typed-selector';
 import { selectErrors } from 'store/selectors/error-selector';
 import { setSortType } from 'store/utils/utils-slice';
-import { TitleVariant, ViewVariant } from 'types/enum';
 
 import { ButtonContainer, Container, DefaultButtonContainer } from './filter-list.style';
 

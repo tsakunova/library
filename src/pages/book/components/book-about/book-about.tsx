@@ -1,7 +1,7 @@
 import { FC, SyntheticEvent } from 'react';
 import { PrimaryButton } from 'components/buttons/primary-button';
+import { BookSectionTitle, CardType } from 'enums';
 import { useTypedSelector } from 'hooks/use-typed-selector';
-import { BookSectionTitle } from 'types/enum';
 import { FullBookDTO } from 'types/types';
 import { getButtonStyles } from 'utils/get-button-styles';
 import { keyExtractor } from 'utils/key-extractor';
@@ -27,7 +27,8 @@ export const BookAbout: FC<BookAboutProps> = ({
   book: { authors, title, images, description, booking, issueYear, delivery },
   onBookedButtonPress,
 }) => {
-  const { buttonType, buttonTitle } = getButtonStyles(!!delivery || !!booking, delivery?.dateHandedTo);
+  const isBooked = !!delivery || !!booking;
+  const { buttonType, buttonTitle } = getButtonStyles(CardType.main, isBooked, delivery?.dateHandedTo);
   const userId = useTypedSelector(({ login }) => login.user?.id);
   const isDisabled = (!!(booking?.customerId !== userId) && !!booking) || !!delivery?.dateHandedTo;
   const renderAuthors = () => authors?.map((item, index) => <span key={keyExtractor(index)}>{item} </span>);

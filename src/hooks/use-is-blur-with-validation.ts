@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { FieldErrors, FieldValues, UseFormWatch } from 'react-hook-form';
-import { UserAPIFields } from 'types/enum';
+import { UserAPIFields } from 'enums';
 
 export const useIsBlurWithValidation = (
   name: UserAPIFields,
+  required: boolean,
   watch: UseFormWatch<FieldValues>,
   errors: FieldErrors<FieldValues>
 ) => {

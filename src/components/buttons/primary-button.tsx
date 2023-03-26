@@ -1,6 +1,6 @@
 import React, { FC, SyntheticEvent } from 'react';
+import { ButtonType, FormButtonType } from 'enums';
 import styled from 'styled-components';
-import { ButtonType, FormButtonType } from 'types/enum';
 
 type Props = {
   title: string;
@@ -45,7 +45,7 @@ const PrimaryButtonContainer = styled.button`
     }
   }
   &.secondaryButton {
-    background: ${(props) => props.theme.color.main.white};
+    background: transparent;
     border: ${(props) => `1px solid ${props.theme.color.grey.black20}`};
     color: ${(props) => props.theme.color.main.dark};
     & p {

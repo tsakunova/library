@@ -8,6 +8,7 @@ import { booksReducer } from './books/books-slice';
 import { categoriesReducer } from './categories/categories-slice';
 import { commentReducer } from './comment/comment-slice';
 import { currentBookReducer } from './current-book/current-book-slice';
+import { userReducer } from './user/user-slice';
 import { utilsReducer } from './utils/utils-slice';
 
 export const store = configureStore({
@@ -21,6 +22,7 @@ export const store = configureStore({
     forgot: forgotReducer,
     comment: commentReducer,
     booking: bookingReducer,
+    user: userReducer,
   },
 });
 

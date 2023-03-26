@@ -26,7 +26,7 @@ export const SwiperSmall: FC<{ images: ImagesType[] }> = ({ images }) => (
     >
       {images.map((item, index) => (
         <SwiperSlide key={keyExtractor(index)}>
-          <img src={getImageURL(item.url)} alt={`Slide${index}`} />
+          <img src={getImageURL(item.url!)} alt={`Slide${index}`} />
         </SwiperSlide>
       ))}
     </Swiper>

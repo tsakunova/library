@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const ForgotSection = styled.div`
   margin-top: ${(props) => `${props.theme.size.default}px`};
-  margin-bottom: 32px;
+  margin-bottom: ${(props) => `${props.theme.size.default * 2}px`};
   font: ${(props) => props.theme.fonts.infoLarge};
   color: ${(props) => props.theme.color.grey.black40};
   margin-left: ${(props) => `${props.theme.size.default}px`};

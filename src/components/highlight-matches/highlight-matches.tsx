@@ -7,11 +7,11 @@ const HightLight = styled.span`
 `;
 
 type HighlightProps = {
-  filter: string;
-  text: string;
+  filter?: string;
+  text?: string;
 };
 
-export const HighlightMatches: FC<HighlightProps> = ({ filter, text }) => {
+export const HighlightMatches: FC<HighlightProps> = ({ filter = '', text = '' }) => {
   const regExp = useMemo(() => new RegExp(filter, 'ig'), [filter]);
   const matchValue = text.match(regExp);
   const lightness = () => {
